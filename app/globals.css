@@ -1,2 +1,240 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   KELLER GALVANIK — Design Tokens
+   Philosophy: Swiss-industrial precision
+   ───────────────────────────────────────────── */
+
+@theme {
+
+  /* ── Fonts ── */
+  --font-display: "Mona Sans", system-ui, sans-serif;
+  --font-body:    "Mona Sans", system-ui, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ── Brand blue scale ── */
+  --color-brand-50:  #e6f7fd;
+  --color-brand-100: #b3e8fa;
+  --color-brand-200: #66cef5;
+  --color-brand-300: #29b8ff;
+  --color-brand-400: #00acf0;
+  --color-brand-500: #00a5ec;  /* primary — logo blue */
+  --color-brand-600: #0091d4;
+  --color-brand-700: #007ab8;
+  --color-brand-800: #005e8f;
+  --color-brand-900: #003d5e;
+
+  /* ── Steel gray scale (from logo wordmark) ── */
+  --color-steel-50:  #f5f6f7;
+  --color-steel-100: #ecedef;
+  --color-steel-200: #d8dade;
+  --color-steel-300: #b8bec6;
+  --color-steel-400: #8b919a;
+  --color-steel-500: #4b525c;  /* primary text — logo gray */
+  --color-steel-600: #3a4049;
+  --color-steel-700: #2b3038;
+  --color-steel-800: #1a1e26;
+  --color-steel-900: #0f1117;
+
+  /* ── Accent palette (micro-accents only) ── */
+  --color-coral-500: #fc814a;
+  --color-sage-500:  #709775;
+  --color-wine-900:  #3d0814;
+
+  /* ── Status ── */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error:   #dc2626;
+  --color-info:    #00a5ec;
+
+  /* ── Type scale ── */
+  --font-size-xs:   0.75rem;    /* 12px */
+  --font-size-sm:   0.875rem;   /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-md:   1.125rem;   /* 18px */
+  --font-size-lg:   1.25rem;    /* 20px */
+  --font-size-xl:   1.5rem;     /* 24px */
+  --font-size-2xl:  1.875rem;   /* 30px */
+  --font-size-3xl:  2.25rem;    /* 36px */
+  --font-size-4xl:  3rem;       /* 48px */
+  --font-size-5xl:  3.75rem;    /* 60px */
+  --font-size-6xl:  4.5rem;     /* 72px — hero display */
+
+  /* ── Font weights ── */
+  --font-weight-normal:   400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+  --font-weight-black:    900;
+
+  /* ── Line heights ── */
+  --line-height-tight:   1.1;
+  --line-height-snug:    1.25;
+  --line-height-normal:  1.5;
+  --line-height-relaxed: 1.65;
+
+  /* ── Letter spacing ── */
+  --letter-spacing-tight:  -0.03em;
+  --letter-spacing-normal:  0em;
+  --letter-spacing-wide:    0.05em;
+  --letter-spacing-wider:   0.1em;
+
+  /* ── Border radius (restrained — Swiss) ── */
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:    0 1px 2px rgba(15, 17, 23, 0.06);
+  --shadow-md:    0 4px 12px rgba(15, 17, 23, 0.08);
+  --shadow-lg:    0 8px 32px rgba(15, 17, 23, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(0, 165, 236, 0.25);
+
+  /* ── Motion ── */
+  --duration-instant: 50ms;
+  --duration-fast:    150ms;
+  --duration-normal:  250ms;
+  --duration-slow:    400ms;
+  --duration-slower:  600ms;
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Breakpoints ── */
+  --breakpoint-sm:  640px;
+  --breakpoint-md:  768px;
+  --breakpoint-lg:  1024px;
+  --breakpoint-xl:  1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ─────────────────────────────────────────────
+   Semantic tokens — light mode (default)
+   ───────────────────────────────────────────── */
+
+:root {
+  /* Backgrounds */
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #eef6fd;   /* very light brand blue */
+  --bg-tertiary:   #daeffe;   /* slightly deeper blue tint */
+  --bg-inverse:    #1a1e26;   /* steel-800 */
+
+  /* Text */
+  --text-primary:   #1a1e26;  /* steel-800 — slightly deeper for readability */
+  --text-secondary: #4b525c;  /* steel-500 */
+  --text-tertiary:  #8b919a;  /* steel-400 */
+  --text-inverse:   #f5f6f7;  /* steel-50 */
+  --text-link:      #0091d4;  /* brand-600 — passes AA on white */
+
+  /* Borders */
+  --border-primary:   #d8dade;  /* steel-200 */
+  --border-secondary: #ecedef;  /* steel-100 */
+  --border-focus:     #00a5ec;  /* brand-500 */
+
+  /* Accent */
+  --accent-primary:        #00a5ec;  /* brand-500 */
+  --accent-primary-hover:  #0091d4;  /* brand-600 */
+  --accent-primary-active: #007ab8;  /* brand-700 */
+
+  /* Layout */
+  --max-width-content: 68ch;
+  --max-width-wide:    1024px;
+  --max-width-page:    1280px;
+  --page-x:            1.5rem;
+  --section-y:         5rem;
+
+  /* Surface */
+  --overlay: rgba(15, 17, 23, 0.5);
+}
+
+/* ─────────────────────────────────────────────
+   Dark mode
+   ───────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  --bg-primary:    #0f1117;   /* steel-900 */
+  --bg-secondary:  #1a1e26;   /* steel-800 */
+  --bg-tertiary:   #222830;
+  --bg-inverse:    #f5f6f7;
+
+  --text-primary:   #f0f2f5;
+  --text-secondary: #9ba3af;
+  --text-tertiary:  #6b7280;
+  --text-inverse:   #1a1e26;
+  --text-link:      #29b8ff;  /* brand-300 — higher contrast on dark */
+
+  --border-primary:   #2c3140;
+  --border-secondary: #222830;
+  --border-focus:     #29b8ff;
+
+  --accent-primary:        #29b8ff;  /* brand-300 */
+  --accent-primary-hover:  #4dc9f4;  /* brand-200 */
+  --accent-primary-active: #00a5ec;  /* brand-500 */
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  --overlay: rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-primary:    #0f1117;
+    --bg-secondary:  #1a1e26;
+    --bg-tertiary:   #222830;
+    --bg-inverse:    #f5f6f7;
+
+    --text-primary:   #f0f2f5;
+    --text-secondary: #9ba3af;
+    --text-tertiary:  #6b7280;
+    --text-inverse:   #1a1e26;
+    --text-link:      #29b8ff;
+
+    --border-primary:   #2c3140;
+    --border-secondary: #222830;
+    --border-focus:     #29b8ff;
+
+    --accent-primary:        #29b8ff;
+    --accent-primary-hover:  #4dc9f4;
+    --accent-primary-active: #00a5ec;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+    --overlay: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Base styles
+   ───────────────────────────────────────────── */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
