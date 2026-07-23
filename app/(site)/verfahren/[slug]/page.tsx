@@ -97,7 +97,7 @@ export default async function VerfahrenDetailPage(
                 <div className="mt-6 pt-4 border-t border-[var(--border-secondary)]">
                   <Link
                     href={`/kontakt?verfahren=${encodeURIComponent(v.name)}`}
-                    className="flex w-full items-center justify-center h-10 text-sm font-semibold text-white bg-[#00a5ec] hover:bg-[#0091d4] rounded-[6px] transition-colors"
+                    className="ui-button ui-button-primary flex w-full"
                   >
                     Offerte anfragen
                   </Link>

@@ -26,6 +26,7 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
   })
   const [errors, setErrors] = useState<Partial<typeof values>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [attachments, setAttachments] = useState<File[]>([])
 
   const set = (field: keyof typeof values) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -48,20 +49,36 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
     setSubmitted(true)
   }
 
-  const inputBase = `w-full px-4 text-sm text-(--text-primary) bg-(--input-bg) rounded-md
-    border border-(--input-border) hover:border-(--input-border-hover) placeholder:text-(--text-tertiary) outline-none
-    focus:border-(--input-border-focus) focus:ring-2 focus:ring-brand-500/20 transition-all duration-150`
+  const handleAttachments = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files ? Array.from(e.target.files) : []
+    if (files.length === 0) return
+
+    setAttachments(prev => {
+      const merged = [...prev, ...files]
+      const unique = new Map<string, File>()
+      merged.forEach(file => {
+        const key = `${file.name}-${file.size}-${file.lastModified}`
+        unique.set(key, file)
+      })
+      return Array.from(unique.values())
+    })
+
+    // Reset value so selecting the same file again triggers onChange.
+    e.target.value = ''
+  }
+
+  const inputBase = 'ui-field w-full h-(--field-height) px-4'
 
   const inputClass = (field: keyof typeof values) =>
-    `${inputBase} h-11 ${errors[field] ? 'ring-2 ring-red-400/50' : ''}`
+    `${inputBase} ${errors[field] ? 'ui-field-error' : ''}`
 
-  const labelClass = 'block text-xs font-medium text-[var(--text-secondary)] mb-1.5'
+  const labelClass = 'ui-label'
   const isFull = layout === 'full'
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center px-6 py-12 text-center bg-brand-50 rounded-lg">
-        <div className="w-10 h-10 rounded-full bg-[#00a5ec] flex items-center justify-center mb-4">
+      <div className="ui-form-card flex flex-col items-center justify-center px-6 py-10 text-center">
+        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-(--accent-primary)">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <path d="M3 9l4 4 8-8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -75,10 +92,17 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} noValidate className="ui-form-card sm:p-7 lg:p-8">
+      <div className="mb-5 sm:mb-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">Kontaktformular</p>
+        <p className="mt-1.5 text-sm leading-relaxed text-(--text-secondary)">
+          Beschreiben Sie Ihr Bauteil. Wir melden uns mit einer klaren technischen Einschaetzung.
+        </p>
+      </div>
 
-        <div>
+      <div className="grid grid-cols-1 gap-(--form-gap) sm:grid-cols-2">
+
+        <div className="space-y-1">
           <label htmlFor="inq-name" className={labelClass}>Name *</label>
           <input
             id="inq-name" type="text" autoComplete="name"
@@ -86,10 +110,10 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
             value={values.name} onChange={set('name')}
             className={inputClass('name')}
           />
-          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+          {errors.name && <p className="ui-error-text">{errors.name}</p>}
         </div>
 
-        <div>
+        <div className="space-y-1">
           <label htmlFor="inq-email" className={labelClass}>E-Mail *</label>
           <input
             id="inq-email" type="email" autoComplete="email"
@@ -97,10 +121,10 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
             value={values.email} onChange={set('email')}
             className={inputClass('email')}
           />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+          {errors.email && <p className="ui-error-text">{errors.email}</p>}
         </div>
 
-        <div className="sm:col-span-2">
+        <div className="space-y-1 sm:col-span-2">
           <label htmlFor="inq-verfahren" className={labelClass}>Verfahren</label>
           <select
             id="inq-verfahren"
@@ -112,24 +136,45 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
           </select>
         </div>
 
-        <div className="sm:col-span-2">
+        <div className="space-y-1 sm:col-span-2">
           <label htmlFor="inq-nachricht" className={labelClass}>Nachricht *</label>
           <textarea
             id="inq-nachricht"
             rows={isFull ? 5 : 3}
             placeholder="Beschreiben Sie Ihr Bauteil und Ihre Anforderungen…"
             value={values.nachricht} onChange={set('nachricht')}
-            className={`${inputBase} py-3 h-auto resize-none ${errors.nachricht ? 'ring-2 ring-red-400/50' : ''}`}
+            className={`${inputBase} h-auto min-h-(--textarea-min) resize-y py-3 ${errors.nachricht ? 'ui-field-error' : ''}`}
           />
-          {errors.nachricht && <p className="text-xs text-red-500 mt-1">{errors.nachricht}</p>}
+          {errors.nachricht && <p className="ui-error-text">{errors.nachricht}</p>}
         </div>
 
-        <div className="sm:col-span-2 flex items-center justify-between gap-4">
+        <div className="space-y-1 sm:col-span-2">
+          <label htmlFor="inq-files" className={labelClass}>Dateien anhängen (optional)</label>
+          <input
+            id="inq-files"
+            type="file"
+            multiple
+            accept="image/*,.pdf,application/pdf"
+            onChange={handleAttachments}
+            className="ui-field h-auto cursor-pointer px-3 py-2 file:mr-3 file:rounded-full file:border-0 file:bg-(--bg-secondary) file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-(--text-primary) hover:file:bg-(--bg-tertiary)"
+          />
+          <p className="text-xs text-(--text-tertiary)">Erlaubt: Bilder und PDF-Dateien.</p>
+          {attachments.length > 0 && (
+            <>
+              <p className="text-xs font-medium text-(--text-secondary)">{attachments.length} Datei(en) ausgewählt</p>
+              <ul className="space-y-1 text-xs text-(--text-secondary)">
+              {attachments.map(file => (
+                <li key={`${file.name}-${file.size}`}>• {file.name}</li>
+              ))}
+              </ul>
+            </>
+          )}
+        </div>
+
+        <div className="sm:col-span-2 mt-1 flex items-center justify-between gap-4 border-t border-(--border-primary) pt-4">
           <button
             type="submit"
-            className="inline-flex items-center h-10 px-6 text-sm font-semibold text-(--button-primary-text)
-              bg-(--button-primary-bg) hover:bg-(--button-primary-hover) active:bg-(--button-primary-active)
-              rounded-md transition-colors duration-150 cursor-pointer"
+            className="ui-button ui-button-primary cursor-pointer"
           >
             Anfrage senden
           </button>

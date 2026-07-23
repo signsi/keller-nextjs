@@ -10,21 +10,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  'inline-flex items-center justify-center font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 cursor-pointer'
+  'ui-button tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--border-focus) focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 cursor-pointer'
 
 const variants: Record<Variant, string> = {
-  primary:
-    'bg-[#00a5ec] text-white hover:bg-[#0091d4] active:bg-[#007ab8]',
-  secondary:
-    'border border-[var(--border-primary)] text-[var(--text-secondary)] bg-transparent hover:border-[var(--text-secondary)] hover:text-[var(--text-primary)]',
-  ghost:
-    'text-[var(--text-secondary)] bg-transparent hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]',
+  primary: 'ui-button-primary',
+  secondary: 'ui-button-secondary',
+  ghost: 'text-(--text-secondary) bg-transparent hover:text-(--text-primary) hover:bg-(--bg-secondary)',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'h-8 px-3 text-sm rounded-[2px]',
-  md: 'h-10 px-5 text-base rounded-[4px]',
-  lg: 'h-12 px-7 text-[1.0625rem] rounded-[4px]',
+  sm: 'ui-button-sm',
+  md: '',
+  lg: 'h-12 px-8 text-base',
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

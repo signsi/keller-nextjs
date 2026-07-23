@@ -1,8 +1,8 @@
 import HomeHero from '@/components/home/HomeHero'
 import HomeSurfacePartner from '@/components/home/HomeSurfacePartner'
 import HomeCategoryTeaserGrid from '@/components/home/HomeCategoryTeaserGrid'
-import HomeTopicsBento from '@/components/home/HomeTopicsBento'
-import VerfahrenBento from '@/components/home/VerfahrenBento'
+// import HomeTopicsBento from '@/components/home/HomeTopicsBento'
+// import VerfahrenBento from '@/components/home/VerfahrenBento'
 import QualitaetTeaser from '@/components/home/QualitaetTeaser'
 import HomeFaq from '@/components/home/HomeFaq'
 import PersonCta from '@/components/home/PersonCta'
@@ -30,8 +30,8 @@ export default async function Home() {
       <HomeHero data={homepage?.hero} />
       <HomeSurfacePartner settings={settings} />
       <HomeCategoryTeaserGrid />
-      <HomeTopicsBento />
-      <VerfahrenBento />
+      {/* <HomeTopicsBento /> */}
+      {/* <VerfahrenBento /> */}
 
       {/* Branchen */}
       {branchenPreview.length > 0 && (

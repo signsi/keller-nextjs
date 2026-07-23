@@ -128,10 +128,10 @@ export default async function UeberUnsPage() {
                 {person?.name ?? 'Peter Keller'} führt den Betrieb mit Leidenschaft für das Handwerk und tiefem technischem Know-how. Er steht für persönliche Beratung und ist direkter Ansprechpartner für alle technischen und kaufmännischen Fragen.
               </p>
               <div className="flex gap-3">
-                <a href={`tel:${telefon.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 h-10 px-5 text-sm font-semibold text-white bg-[#00a5ec] hover:bg-[#0091d4] rounded-[6px] transition-colors">
+                <a href={`tel:${telefon.replace(/\s/g, '')}`} className="ui-button ui-button-primary gap-2">
                   Jetzt anrufen
                 </a>
-                <Link href="/kontakt" className="inline-flex items-center h-10 px-5 text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                <Link href="/kontakt" className="ui-button ui-button-secondary">
                   Schreiben →
                 </Link>
               </div>

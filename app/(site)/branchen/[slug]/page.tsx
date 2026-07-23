@@ -66,7 +66,7 @@ export default async function BrancheDetailPage(
               <div data-reveal className="mt-8">
                 <Link
                   href={`/kontakt?branche=${encodeURIComponent(b.name)}`}
-                  className="inline-flex items-center h-11 px-6 text-sm font-semibold text-white bg-[#00a5ec] hover:bg-[#0091d4] rounded-[4px] transition-colors"
+                  className="ui-button ui-button-primary"
                 >
                   Offerte anfragen
                 </Link>

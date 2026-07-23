@@ -25,10 +25,10 @@ export default function VerfahrenGrid({ verfahren }: VerfahrenGridProps) {
           <button
             key={f}
             onClick={() => setActive(f)}
-            className={`h-8 px-4 text-xs font-semibold rounded-full transition-colors cursor-pointer
+            className={`ui-button ui-button-sm transition-colors cursor-pointer
               ${active === f
-                ? 'bg-[#00a5ec] text-white'
-                : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)]'
+                ? 'ui-button-primary'
+                : 'ui-button-secondary bg-(--bg-secondary) hover:bg-(--bg-tertiary)'
               }`}
           >
             {f}

@@ -70,7 +70,7 @@ export default function PageHero({
             {primaryCta && (
               <Link
                 href={primaryCta.href}
-                className="inline-flex items-center h-11 px-6 text-sm font-semibold text-white bg-[#00a5ec] hover:bg-[#0091d4] active:bg-[#007ab8] rounded-[4px] transition-colors"
+                className="ui-button ui-button-primary"
               >
                 {primaryCta.label}
               </Link>
@@ -78,7 +78,7 @@ export default function PageHero({
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="inline-flex items-center h-11 px-6 text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] rounded-[4px] transition-colors"
+                className="ui-button ui-button-secondary"
               >
                 {secondaryCta.label}
               </Link>

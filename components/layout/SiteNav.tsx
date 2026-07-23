@@ -54,8 +54,8 @@ export default function SiteNav() {
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-300
           ${homeOverlayMode
-            ? 'top-3 md:top-4 mx-2 md:mx-4 lg:mx-5 bg-transparent'
-            : 'top-0 bg-white'
+            ? 'top-7 md:top-8 lg:top-10 mx-2 md:mx-4 lg:mx-5 bg-transparent'
+            : 'top-2 md:top-3 lg:top-4 mx-2 md:mx-4 lg:mx-5 bg-white'
           }
           ${scrolled || megaOpen ? 'shadow-[0_2px_16px_rgba(15,17,23,0.08)]' : ''}`}
       >
@@ -78,7 +78,7 @@ export default function SiteNav() {
                   >
                     <Link
                       href={href}
-                      className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-md flex items-center gap-1
+                      className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-full flex items-center gap-1
                         ${homeOverlayMode
                           ? 'text-white/90 hover:text-white hover:bg-white/10'
                           : isActive(href) || megaOpen
@@ -95,7 +95,7 @@ export default function SiteNav() {
                       {label}
                       <svg
                         width="12" height="12" viewBox="0 0 12 12" fill="none"
-                        className={`transition-transform duration-200 ${megaOpen ? 'rotate-180' : ''}`}
+                        className={`transition-transform duration-200 ${megaOpen ? 'rotate-180' : ''} ${homeOverlayMode ? 'text-white' : 'text-black'}`}
                       >
                         <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -105,7 +105,7 @@ export default function SiteNav() {
                   <Link
                     key={href}
                     href={href}
-                    className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-md
+                    className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-full
                       ${homeOverlayMode
                         ? 'text-white/90 hover:text-white hover:bg-white/10'
                         : isActive(href)
@@ -128,7 +128,7 @@ export default function SiteNav() {
             <div className="hidden md:block">
               <Link
                 href="/kontakt"
-                className="inline-flex items-center h-11 px-7 text-sm font-semibold text-white bg-brand-800 hover:bg-brand-700 rounded-full transition-colors"
+                className="ui-button ui-button-primary"
               >
                 Kontakt
               </Link>
@@ -136,7 +136,7 @@ export default function SiteNav() {
 
             <button
               onClick={() => setOpen(true)}
-              className={`md:hidden flex flex-col gap-1.25 w-10 h-10 items-center justify-center rounded-md transition-colors
+              className={`md:hidden flex flex-col gap-1.25 w-10 h-10 items-center justify-center rounded-full transition-colors
                 ${homeOverlayMode ? 'hover:bg-white/10' : 'hover:bg-(--bg-secondary)'}`}
               aria-label="Navigation öffnen"
               aria-expanded={open}
@@ -157,7 +157,7 @@ export default function SiteNav() {
         )}
       </header>
 
-      {!isHome && <div className="h-16" aria-hidden="true" />}
+      {!isHome && <div className="h-18 md:h-19 lg:h-20" aria-hidden="true" />}
 
       {/* Backdrop */}
       {megaOpen && (
@@ -180,7 +180,7 @@ export default function SiteNav() {
             <Logo variant="white" />
             <button
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-10 h-10 rounded-md text-white/60 hover:text-white transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-full text-white/60 hover:text-white transition-colors"
               aria-label="Navigation schliessen"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -207,7 +207,7 @@ export default function SiteNav() {
             <Link
               href="/kontakt"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-full h-12 bg-[#00a5ec] text-white font-semibold rounded-md hover:bg-brand-600 transition-colors"
+              className="ui-button ui-button-primary flex w-full"
             >
               Offerte anfragen
             </Link>

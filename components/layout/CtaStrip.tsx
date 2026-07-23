@@ -35,10 +35,10 @@ export default function CtaStrip({
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link
               href={primaryCta.href}
-              className={`inline-flex items-center h-11 px-6 text-sm font-semibold rounded-[4px] transition-colors
+              className={`ui-button
                 ${isBlue
                   ? 'bg-white text-[#0083bd] hover:bg-white/90'
-                  : 'bg-[#00a5ec] text-white hover:bg-[#0091d4]'
+                  : 'ui-button-primary'
                 }`}
             >
               {primaryCta.label}
@@ -46,7 +46,7 @@ export default function CtaStrip({
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="inline-flex items-center h-11 px-6 text-sm font-semibold text-white/70 hover:text-white transition-colors"
+                className={`ui-button ${isBlue ? 'text-white/80 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20' : 'ui-button-secondary'}`}
               >
                 {secondaryCta.label}
               </Link>

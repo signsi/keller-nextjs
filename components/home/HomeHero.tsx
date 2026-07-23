@@ -39,7 +39,7 @@ export default function HomeHero({ data }: Props) {
   }, [])
 
   return (
-    <section className="h-screen px-2 pb-4 md:px-4 md:pb-6 lg:px-5 lg:pb-8 bg-white">
+    <section className="h-screen bg-brand-800 px-2 pt-2 pb-4 md:px-4 md:pt-4 md:pb-6 lg:px-5 lg:pt-5 lg:pb-8">
       <div className="relative h-full overflow-hidden rounded-[26px] shadow-[0_14px_38px_rgba(15,17,23,0.12)]">
         <div className="absolute inset-0">
           <Image
@@ -62,7 +62,7 @@ export default function HomeHero({ data }: Props) {
 
         <div className="absolute inset-0 bg-linear-to-b from-black/42 via-black/34 to-black/72 lg:bg-linear-to-r lg:from-black/44 lg:via-black/26 lg:to-black/30" />
 
-        <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-10 pt-28 sm:px-8 sm:pb-12 sm:pt-32 lg:px-14 lg:pb-12 lg:pt-36">
+        <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-10 pt-28 sm:px-8 sm:pb-12 sm:pt-32 lg:flex-row lg:items-end lg:justify-between lg:px-14 lg:pb-12 lg:pt-36">
           <div className="">
             <div ref={linesRef}>
               <h1 className="text-[4rem] sm:text-[5.2rem] lg:text-[7.2rem] font-bold leading-[0.94] tracking-[-0.035em] text-white">
@@ -78,7 +78,7 @@ export default function HomeHero({ data }: Props) {
             </p>
           </div>
 
-          <div className="mt-12 flex justify-start lg:justify-end">
+          <div className="mt-12 flex justify-start lg:mt-0 lg:shrink-0 lg:justify-end">
             <Link
               href={d.discoverLinkHref ?? '/ueber-uns'}
               className="group inline-flex items-center gap-3 text-[2rem] sm:text-[2.1rem] font-semibold text-white/95 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-sm"
