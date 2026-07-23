@@ -1,24 +1,34 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useLayoutEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
+import { urlFor } from '@/sanity/lib/image'
 import type { HomepageData } from '@/sanity/lib/types'
 
 type Props = { data?: HomepageData['hero'] }
 
 const defaults = {
-  kicker: 'Keller Galvanik · Oberflächentechnik',
-  primaryHeading: 'Präzise Oberflächen',
-  secondaryHeading: 'für Industrie und Technik.',
-  subtext: 'Von galvanischen Beschichtungen bis zur Edelstahlveredelung — von der technischen Abklärung bis zur zuverlässigen Ausführung.',
-  ctaPrimary: { label: 'Offerte anfragen', href: '/kontakt' },
-  ctaSecondary: { label: 'Verfahren finden', href: '/verfahren' },
+  primaryHeading: 'Präzision',
+  secondaryHeading: 'trifft auf',
+  tertiaryHeading: 'Innovation',
+  subtext: 'Ihr Partner für anspruchsvolle Metallverarbeitung aus einer Hand.',
+  discoverLinkLabel: 'Keller Galvanik entdecken',
+  discoverLinkHref: '/ueber-uns',
 }
 
 export default function HomeHero({ data }: Props) {
   const d = { ...defaults, ...data }
+  const fixedHeadline = ['Präzision', 'trifft auf', 'Innovation']
+  const fixedSubline = 'Ihr Partner für anspruchsvolle Metallverarbeitung aus einer Hand.'
   const linesRef = useRef<HTMLDivElement>(null)
+  const desktopImage = d.heroImageDesktop
+    ? urlFor(d.heroImageDesktop).width(2200).quality(85).url()
+    : '/hero/unimec_image_hero_home.jpg.webp'
+  const mobileImage = d.heroImageMobile
+    ? urlFor(d.heroImageMobile).width(1200).quality(85).url()
+    : '/hero/unimec_image_hero_home-mobile.jpg.webp'
 
   useLayoutEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -29,72 +39,59 @@ export default function HomeHero({ data }: Props) {
   }, [])
 
   return (
-    <section className="min-h-[calc(100svh-4rem)] grid grid-cols-1 lg:grid-cols-[1fr_44%] bg-white overflow-hidden">
-
-      <div className="flex items-center justify-end py-20 lg:py-0">
-        <div className="w-full max-w-[600px] px-6 md:px-10 lg:pl-16 lg:pr-16 xl:pl-20 xl:pr-20">
-
-          <p data-reveal data-reveal-delay="0" className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-6">
-            {d.kicker}
-          </p>
-
-          <div ref={linesRef}>
-            <h1 className="text-4xl sm:text-5xl font-bold leading-[1.08] tracking-[-0.025em] text-[var(--text-primary)]">
-              <span data-line className="block">{d.primaryHeading}</span>
-              <span data-line className="block text-[var(--text-secondary)] font-normal">{d.secondaryHeading}</span>
-            </h1>
-          </div>
-
-          <p data-reveal data-reveal-delay="0.45" className="mt-6 text-base sm:text-[1.0625rem] text-[var(--text-secondary)] leading-relaxed max-w-[420px]">
-            {d.subtext}
-          </p>
-
-          <div data-reveal data-reveal-delay="0.55" className="mt-10 flex flex-wrap items-center gap-3">
-            <Link
-              href={d.ctaPrimary?.href ?? '/kontakt'}
-              className="inline-flex items-center h-11 px-6 text-sm font-semibold text-white bg-[#00a5ec] hover:bg-[#0091d4] active:bg-[#007ab8] rounded-[4px] transition-colors duration-150"
-            >
-              {d.ctaPrimary?.label ?? 'Offerte anfragen'}
-            </Link>
-            <Link
-              href={d.ctaSecondary?.href ?? '/verfahren'}
-              className="inline-flex items-center h-11 px-6 text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] rounded-[4px] transition-colors duration-150"
-            >
-              {d.ctaSecondary?.label ?? 'Verfahren finden'}
-            </Link>
-          </div>
-
+    <section className="h-screen px-2 pb-4 md:px-4 md:pb-6 lg:px-5 lg:pb-8 bg-white">
+      <div className="relative h-full overflow-hidden rounded-[26px] shadow-[0_14px_38px_rgba(15,17,23,0.12)]">
+        <div className="absolute inset-0">
+          <Image
+            src={desktopImage}
+            alt="Mitarbeiter bei praeziser Metallbearbeitung"
+            fill
+            priority
+            sizes="(max-width: 1023px) 0px, 100vw"
+            className="hidden lg:block object-cover"
+          />
+          <Image
+            src={mobileImage}
+            alt="Mitarbeiter bei praeziser Metallbearbeitung"
+            fill
+            priority
+            sizes="(max-width: 1023px) 100vw, 0px"
+            className="block lg:hidden object-cover object-[70%_42%]"
+          />
         </div>
-      </div>
 
-      {/* Right — illustration panel */}
-      <div className="hidden lg:flex items-center justify-center bg-[var(--bg-secondary)] relative min-h-[400px]">
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{ backgroundImage: 'radial-gradient(circle, #b8bec6 1px, transparent 1px)', backgroundSize: '28px 28px' }}
-        />
-        <div className="relative z-10 flex flex-col items-center w-72">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-tertiary)] mb-6">
-            Querschnitt · Chemisch Vernickeln
-          </p>
-          <div className="w-full rounded-[4px] overflow-hidden shadow-[0_4px_24px_rgba(15,17,23,0.10)]">
-            <div className="h-3 bg-[#00a5ec] flex items-center px-3">
-              <span className="text-[9px] text-white font-medium tracking-wide">Ni-Schicht · 15 µm</span>
+        <div className="absolute inset-0 bg-linear-to-b from-black/42 via-black/34 to-black/72 lg:bg-linear-to-r lg:from-black/44 lg:via-black/26 lg:to-black/30" />
+
+        <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-10 pt-28 sm:px-8 sm:pb-12 sm:pt-32 lg:px-14 lg:pb-12 lg:pt-36">
+          <div className="">
+            <div ref={linesRef}>
+              <h1 className="text-[4rem] sm:text-[5.2rem] lg:text-[7.2rem] font-bold leading-[0.94] tracking-[-0.035em] text-white">
+                {fixedHeadline.map((line) => (
+                  <span key={line} data-line className="block">{line}</span>
+                ))}
+              </h1>
             </div>
-            <div className="h-2 bg-[#b8bec6]" />
-            <div className="h-28 bg-[#d8dade] flex flex-col justify-center px-3">
-              <span className="text-[10px] text-[var(--text-secondary)] font-medium">Grundwerkstoff</span>
-              <span className="text-[9px] text-[var(--text-tertiary)] mt-0.5">Stahl / Aluminium</span>
-            </div>
+
+            <p data-reveal data-reveal-delay="0.35" className="mt-4 text-[1.05rem] sm:text-[1.9rem] lg:text-[2rem] leading-[1.18] tracking-[-0.015em] text-white/92">
+              Ihr Partner für anspruchsvolle<br />
+              Oberflächen aus einer Hand.
+            </p>
           </div>
-          <div className="w-full mt-4 flex items-center gap-2">
-            <div className="flex-1 h-px bg-[var(--border-primary)]" />
-            <span className="text-[9px] font-mono text-[var(--text-tertiary)] whitespace-nowrap">Schichtdicke 5–50 µm</span>
-            <div className="flex-1 h-px bg-[var(--border-primary)]" />
+
+          <div className="mt-12 flex justify-start lg:justify-end">
+            <Link
+              href={d.discoverLinkHref ?? '/ueber-uns'}
+              className="group inline-flex items-center gap-3 text-[2rem] sm:text-[2.1rem] font-semibold text-white/95 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-sm"
+            >
+              <span>{d.discoverLinkLabel ?? 'unimec entdecken'}</span>
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" className="translate-y-px transition-transform duration-200 group-hover:translate-x-1">
+                <path d="M5 19h14V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M7 7l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>
-
     </section>
   )
 }

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from '@/components/brand/Logo'
-import Container from '@/components/layout/Container'
 import VerfahrenMegaMenu from '@/components/layout/VerfahrenMegaMenu'
 
 const navLinks = [
@@ -17,10 +16,12 @@ const navLinks = [
 
 export default function SiteNav() {
   const pathname = usePathname()
+  const isHome = pathname === '/'
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const homeOverlayMode = isHome && !scrolled && !megaOpen && !open
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 72)
@@ -51,13 +52,20 @@ export default function SiteNav() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300
+        className={`fixed left-0 right-0 z-50 transition-all duration-300
+          ${homeOverlayMode
+            ? 'top-3 md:top-4 mx-2 md:mx-4 lg:mx-5 bg-transparent'
+            : 'top-0 bg-white'
+          }
           ${scrolled || megaOpen ? 'shadow-[0_2px_16px_rgba(15,17,23,0.08)]' : ''}`}
       >
-        <Container>
+        <div className={`w-full ${homeOverlayMode ? 'px-6 sm:px-8 lg:px-14' : 'px-4 sm:px-6 md:px-8 lg:px-10'}`}>
           <div className="flex h-16 items-center justify-between gap-8">
 
-            <Logo />
+            <Logo
+              variant={homeOverlayMode ? 'white' : 'default'}
+              mode={homeOverlayMode ? 'symbol' : 'full'}
+            />
 
             <nav className="hidden md:flex items-center gap-1" aria-label="Hauptnavigation">
               {navLinks.map(({ href, label, hasMega }) =>
@@ -70,14 +78,19 @@ export default function SiteNav() {
                   >
                     <Link
                       href={href}
-                      className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-[4px] flex items-center gap-1
-                        ${isActive(href) || megaOpen
-                          ? 'text-[var(--text-primary)]'
-                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
+                      className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-md flex items-center gap-1
+                        ${homeOverlayMode
+                          ? 'text-white/90 hover:text-white hover:bg-white/10'
+                          : isActive(href) || megaOpen
+                            ? 'text-(--text-primary)'
+                            : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-secondary)'
                         }
-                        after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
-                        after:bg-[#00a5ec] after:transition-transform after:duration-200 after:origin-left
-                        ${isActive(href) || megaOpen ? 'after:scale-x-100' : 'after:scale-x-0'}`}
+                        ${homeOverlayMode
+                          ? ''
+                          : `after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
+                            after:bg-[#00a5ec] after:transition-transform after:duration-200 after:origin-left
+                            ${isActive(href) || megaOpen ? 'after:scale-x-100' : 'after:scale-x-0'}`
+                        }`}
                     >
                       {label}
                       <svg
@@ -92,14 +105,19 @@ export default function SiteNav() {
                   <Link
                     key={href}
                     href={href}
-                    className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-[4px]
-                      ${isActive(href)
-                        ? 'text-[var(--text-primary)]'
-                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
+                    className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-md
+                      ${homeOverlayMode
+                        ? 'text-white/90 hover:text-white hover:bg-white/10'
+                        : isActive(href)
+                          ? 'text-(--text-primary)'
+                          : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-secondary)'
                       }
-                      after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
-                      after:bg-[#00a5ec] after:transition-transform after:duration-200 after:origin-left
-                      ${isActive(href) ? 'after:scale-x-100' : 'after:scale-x-0'}`}
+                      ${homeOverlayMode
+                        ? ''
+                        : `after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
+                          after:bg-[#00a5ec] after:transition-transform after:duration-200 after:origin-left
+                          ${isActive(href) ? 'after:scale-x-100' : 'after:scale-x-0'}`
+                      }`}
                   >
                     {label}
                   </Link>
@@ -110,25 +128,26 @@ export default function SiteNav() {
             <div className="hidden md:block">
               <Link
                 href="/kontakt"
-                className="inline-flex items-center h-8 px-4 text-sm font-medium text-white bg-[#00a5ec] hover:bg-[#0091d4] rounded-[4px] transition-colors"
+                className="inline-flex items-center h-11 px-7 text-sm font-semibold text-white bg-brand-800 hover:bg-brand-700 rounded-full transition-colors"
               >
-                Offerte anfragen
+                Kontakt
               </Link>
             </div>
 
             <button
               onClick={() => setOpen(true)}
-              className="md:hidden flex flex-col gap-[5px] w-10 h-10 items-center justify-center rounded-[4px] hover:bg-[var(--bg-secondary)] transition-colors"
+              className={`md:hidden flex flex-col gap-1.25 w-10 h-10 items-center justify-center rounded-md transition-colors
+                ${homeOverlayMode ? 'hover:bg-white/10' : 'hover:bg-(--bg-secondary)'}`}
               aria-label="Navigation öffnen"
               aria-expanded={open}
             >
-              <span className="block w-5 h-px bg-[var(--text-primary)]" />
-              <span className="block w-5 h-px bg-[var(--text-primary)]" />
-              <span className="block w-3.5 h-px bg-[var(--text-primary)]" />
+              <span className={`block w-5 h-px ${homeOverlayMode ? 'bg-white' : 'bg-(--text-primary)'}`} />
+              <span className={`block w-5 h-px ${homeOverlayMode ? 'bg-white' : 'bg-(--text-primary)'}`} />
+              <span className={`block w-3.5 h-px ${homeOverlayMode ? 'bg-white' : 'bg-(--text-primary)'}`} />
             </button>
 
           </div>
-        </Container>
+        </div>
 
         {/* Mega menu — rendered inside header to inherit fixed positioning */}
         {megaOpen && (
@@ -138,7 +157,7 @@ export default function SiteNav() {
         )}
       </header>
 
-      <div className="h-16" aria-hidden="true" />
+      {!isHome && <div className="h-16" aria-hidden="true" />}
 
       {/* Backdrop */}
       {megaOpen && (
@@ -152,7 +171,7 @@ export default function SiteNav() {
       {/* Mobile nav */}
       {open && (
         <div
-          className="fixed inset-0 z-[60] bg-steel-800 flex flex-col"
+          className="fixed inset-0 z-60 bg-steel-800 flex flex-col"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation"
@@ -161,7 +180,7 @@ export default function SiteNav() {
             <Logo variant="white" />
             <button
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-10 h-10 rounded-[4px] text-white/60 hover:text-white transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-md text-white/60 hover:text-white transition-colors"
               aria-label="Navigation schliessen"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -188,7 +207,7 @@ export default function SiteNav() {
             <Link
               href="/kontakt"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-full h-12 bg-[#00a5ec] text-white font-semibold rounded-[4px] hover:bg-[#0091d4] transition-colors"
+              className="flex items-center justify-center w-full h-12 bg-[#00a5ec] text-white font-semibold rounded-md hover:bg-brand-600 transition-colors"
             >
               Offerte anfragen
             </Link>

@@ -1,5 +1,6 @@
 import HomeHero from '@/components/home/HomeHero'
-import TrustBar from '@/components/home/TrustBar'
+import HomeSurfacePartner from '@/components/home/HomeSurfacePartner'
+import HomeTopicsBento from '@/components/home/HomeTopicsBento'
 import VerfahrenBento from '@/components/home/VerfahrenBento'
 import QualitaetTeaser from '@/components/home/QualitaetTeaser'
 import HomeFaq from '@/components/home/HomeFaq'
@@ -26,7 +27,8 @@ export default async function Home() {
   return (
     <>
       <HomeHero data={homepage?.hero} />
-      <TrustBar items={homepage?.trustItems} />
+      <HomeSurfacePartner settings={settings} />
+      <HomeTopicsBento />
       <VerfahrenBento />
 
       {/* Branchen */}

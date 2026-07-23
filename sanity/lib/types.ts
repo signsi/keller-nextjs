@@ -41,6 +41,10 @@ export type HomepageData = {
     primaryHeading?: string
     secondaryHeading?: string
     subtext?: string
+    heroImageDesktop?: SanityImage
+    heroImageMobile?: SanityImage
+    discoverLinkLabel?: string
+    discoverLinkHref?: string
     ctaPrimary?: { label?: string; href?: string }
     ctaSecondary?: { label?: string; href?: string }
   }
