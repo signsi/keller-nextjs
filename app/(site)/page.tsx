@@ -1,5 +1,6 @@
 import HomeHero from '@/components/home/HomeHero'
 import HomeSurfacePartner from '@/components/home/HomeSurfacePartner'
+import HomeCategoryTeaserGrid from '@/components/home/HomeCategoryTeaserGrid'
 import HomeTopicsBento from '@/components/home/HomeTopicsBento'
 import VerfahrenBento from '@/components/home/VerfahrenBento'
 import QualitaetTeaser from '@/components/home/QualitaetTeaser'
@@ -28,6 +29,7 @@ export default async function Home() {
     <>
       <HomeHero data={homepage?.hero} />
       <HomeSurfacePartner settings={settings} />
+      <HomeCategoryTeaserGrid />
       <HomeTopicsBento />
       <VerfahrenBento />
 

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keller Galvanik - Styleguide</title>
+    <style>
+      :root {
+        --font-display: "Mona Sans", system-ui, sans-serif;
+        --font-body: "Mona Sans", system-ui, sans-serif;
+
+        --color-brand-50: #e6f7fd;
+        --color-brand-100: #b3e8fa;
+        --color-brand-200: #66cef5;
+        --color-brand-300: #29b8ff;
+        --color-brand-400: #00acf0;
+        --color-brand-500: #00a5ec;
+        --color-brand-600: #0091d4;
+        --color-brand-700: #007ab8;
+        --color-brand-800: #005e8f;
+        --color-brand-900: #003d5e;
+
+        --color-steel-50: #f5f6f7;
+        --color-steel-100: #ecedef;
+        --color-steel-200: #d8dade;
+        --color-steel-300: #b8bec6;
+        --color-steel-400: #8b919a;
+        --color-steel-500: #4b525c;
+        --color-steel-600: #3a4049;
+        --color-steel-700: #2b3038;
+        --color-steel-800: #1a1e26;
+        --color-steel-900: #0f1117;
+
+        --bg-primary: #ffffff;
+        --bg-secondary: #eef6fd;
+        --bg-tertiary: #daeffe;
+        --text-primary: #1a1e26;
+        --text-secondary: #4b525c;
+        --text-tertiary: #8b919a;
+
+        --surface-card: #ffffff;
+        --surface-card-muted: #f8fbff;
+
+        --input-bg: #ffffff;
+        --input-border: #8ea0b0;
+        --input-border-hover: #6f8498;
+        --input-border-focus: #00a5ec;
+
+        --button-primary-bg: #00a5ec;
+        --button-primary-hover: #0091d4;
+        --button-primary-active: #007ab8;
+        --button-primary-text: #ffffff;
+
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 18px;
+
+        --shadow-sm: 0 1px 3px rgba(15, 17, 23, 0.08);
+        --shadow-md: 0 10px 28px rgba(15, 17, 23, 0.1);
+
+        --space-4: 1rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-12: 3rem;
+        --space-16: 4rem;
+        --space-24: 6rem;
+
+        --font-size-base: 1.0625rem;
+        --font-size-lg: 1.375rem;
+        --font-size-xl: 1.625rem;
+        --font-size-2xl: 2rem;
+        --font-size-3xl: 2.5rem;
+        --font-size-4xl: 3.125rem;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        line-height: 1.55;
+      }
+
+      .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: var(--space-16) var(--space-8) var(--space-24);
+      }
+
+      .hero {
+        padding: var(--space-12);
+        border: 1px solid var(--color-steel-200);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 80% 20%, rgba(0,165,236,0.16), transparent 38%),
+          radial-gradient(circle at 15% 70%, rgba(0,91,143,0.1), transparent 38%),
+          #ffffff;
+      }
+
+      h1, h2, h3 { margin: 0; font-family: var(--font-display); letter-spacing: -0.02em; }
+      h1 { font-size: clamp(2.6rem, 6vw, 5.4rem); line-height: 0.98; }
+      h2 { font-size: clamp(1.8rem, 3.6vw, 3.2rem); line-height: 1.05; }
+      h3 { font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1.14; }
+
+      p { margin: 0; color: var(--text-secondary); }
+
+      .kicker {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--color-brand-700);
+      }
+
+      .section {
+        margin-top: var(--space-16);
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: var(--space-6);
+        margin-bottom: var(--space-8);
+      }
+
+      .token-grid,
+      .component-grid {
+        display: grid;
+        gap: var(--space-6);
+      }
+
+      .token-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+      .component-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+      .card {
+        background: var(--surface-card);
+        border: 1px solid var(--color-steel-200);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-sm);
+        padding: var(--space-6);
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      .swatch {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .swatch-color {
+        height: 54px;
+      }
+
+      .swatch-label {
+        font-size: 0.72rem;
+        padding: 0.45rem 0.55rem;
+        color: var(--text-secondary);
+        background: #fff;
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+
+      .type-stack > * + * { margin-top: 0.65rem; }
+
+      .display {
+        font-size: clamp(2.7rem, 5.5vw, 4.9rem);
+        line-height: 0.98;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .h1 { font-size: clamp(2.2rem, 4.5vw, 3.9rem); line-height: 1.02; font-weight: 700; }
+      .h2 { font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.06; font-weight: 700; }
+      .h3 { font-size: clamp(1.4rem, 2.8vw, 2.15rem); line-height: 1.12; font-weight: 600; }
+      .lead { font-size: 1.25rem; line-height: 1.6; color: var(--text-secondary); }
+      .body { font-size: 1.0625rem; line-height: 1.62; color: var(--text-secondary); }
+      .small { font-size: 0.875rem; line-height: 1.5; color: var(--text-tertiary); }
+
+      .btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+      .btn {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.78rem 1.25rem;
+        font-weight: 650;
+        font-size: 0.92rem;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--button-primary-bg);
+        color: var(--button-primary-text);
+      }
+
+      .btn-secondary {
+        background: #ffffff;
+        color: var(--text-primary);
+        border: 1px solid var(--color-steel-300);
+      }
+
+      .btn-dark {
+        background: var(--color-steel-800);
+        color: #fff;
+      }
+
+      .field-grid { display: grid; gap: 0.9rem; }
+
+      .input,
+      .select,
+      .textarea {
+        width: 100%;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text-primary);
+        padding: 0.72rem 0.85rem;
+        font: inherit;
+        outline: none;
+      }
+
+      .textarea { min-height: 110px; resize: vertical; }
+
+      .badge-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+      .badge {
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        border-radius: 999px;
+        padding: 0.35rem 0.7rem;
+      }
+
+      .badge-brand { background: #dff4ff; color: #005e8f; }
+      .badge-steel { background: #eef1f4; color: #3a4049; }
+      .badge-dark { background: #1a1e26; color: #f5f6f7; }
+
+      .bento {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .tile {
+        border-radius: 22px;
+        min-height: 170px;
+        padding: 1rem;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tile::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 18% 20%, rgba(255,255,255,0.32), transparent 35%);
+      }
+
+      .tile h4 {
+        margin: 0;
+        position: relative;
+        z-index: 1;
+        font-size: 1.15rem;
+        letter-spacing: -0.01em;
+      }
+
+      .span-3-2 { grid-column: span 3; grid-row: span 2; min-height: 360px; }
+      .span-2 { grid-column: span 2; }
+      .span-1 { grid-column: span 1; }
+
+      .g1 { background: linear-gradient(140deg, #005d9a, #157fc1, #66d4ff); }
+      .g2 { background: linear-gradient(140deg, #1e5fb8, #4f8ee0, #9ac7ff); }
+      .g3 { background: linear-gradient(140deg, #0f5d7c, #2f90b3, #82e0f2); }
+      .g4 { background: linear-gradient(140deg, #125f93, #3f89bf, #8ad8f5); }
+
+      .space-stack > * + * { margin-top: 0.9rem; }
+
+      @media (max-width: 1024px) {
+        .page { padding: var(--space-12) var(--space-6) var(--space-16); }
+        .bento { grid-template-columns: 1fr 1fr; }
+        .span-3-2,
+        .span-2,
+        .span-1 {
+          grid-column: span 1;
+          grid-row: span 1;
+          min-height: 210px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .hero { padding: var(--space-8); border-radius: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="kicker">Styleguide</span>
+        <h1>Large type, modern color system, generous whitespace.</h1>
+        <p class="lead" style="margin-top: 1.1rem; max-width: 64ch;">
+          Reference for Keller Galvanik visual language. Use this page as a source of truth for tokens,
+          core typography, color behavior, spacing rhythm, and component primitives.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Foundation</span>
+            <h2>Color Tokens</h2>
+          </div>
+        </div>
+
+        <div class="token-grid">
+          <article class="card">
+            <h3>Brand Scale</h3>
+            <div class="swatches" style="margin-top: 1rem;">
+              <div class="swatch"><div class="swatch-color" style="background:#e6f7fd"></div><div class="swatch-label">50</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#66cef5"></div><div class="swatch-label">200</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#00a5ec"></div><div class="swatch-label">500</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#0091d4"></div><div class="swatch-label">600</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#005e8f"></div><div class="swatch-label">800</div></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Steel Scale</h3>
+            <div class="swatches" style="margin-top: 1rem;">
+              <div class="swatch"><div class="swatch-color" style="background:#f5f6f7"></div><div class="swatch-label">50</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#d8dade"></div><div class="swatch-label">200</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#8b919a"></div><div class="swatch-label">400</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#4b525c"></div><div class="swatch-label">500</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#1a1e26"></div><div class="swatch-label">800</div></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Semantic Surfaces</h3>
+            <div class="space-stack" style="margin-top: 1rem;">
+              <div style="padding:0.7rem;border:1px solid #d8dade;border-radius:10px;background:#ffffff;">--surface-card</div>
+              <div style="padding:0.7rem;border:1px solid #d8dade;border-radius:10px;background:#f8fbff;">--surface-card-muted</div>
+              <div style="padding:0.7rem;border:1px solid #2b3038;border-radius:10px;background:#1a1e26;color:#f5f6f7;">--surface-dark</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Typography</span>
+            <h2>Type Ramp</h2>
+          </div>
+        </div>
+
+        <div class="card type-stack">
+          <div class="display">Display / 92-76</div>
+          <div class="h1">Heading 1 / 62-50</div>
+          <div class="h2">Heading 2 / 40-32</div>
+          <div class="h3">Heading 3 / 26-22</div>
+          <p class="lead">Lead copy for major intros and key explanatory paragraphs.</p>
+          <p class="body">Body text at 17px baseline for readability and a premium visual rhythm with larger type.</p>
+          <p class="small">Small text for metadata, helper labels, and secondary notes.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Components</span>
+            <h2>UI Primitives</h2>
+          </div>
+        </div>
+
+        <div class="component-grid">
+          <article class="card">
+            <h3>Buttons</h3>
+            <div class="btns" style="margin-top: 1rem;">
+              <button class="btn btn-primary">Primary action</button>
+              <button class="btn btn-secondary">Secondary</button>
+              <button class="btn btn-dark">Dark action</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Inputs</h3>
+            <div class="field-grid" style="margin-top: 1rem;">
+              <input class="input" placeholder="Name" />
+              <input class="input" placeholder="Email" />
+              <select class="select"><option>Process (optional)</option></select>
+              <textarea class="textarea" placeholder="Project details"></textarea>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Badges</h3>
+            <div class="badge-row" style="margin-top: 1rem;">
+              <span class="badge badge-brand">Verfahren</span>
+              <span class="badge badge-steel">Qualitaet</span>
+              <span class="badge badge-dark">Dark surface</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Layout</span>
+            <h2>Bento Composition</h2>
+          </div>
+        </div>
+
+        <div class="bento">
+          <article class="tile span-3-2 g1"><h4>Oberflaechenverfahren</h4></article>
+          <article class="tile span-2 g2"><h4>Qualitaet</h4></article>
+          <article class="tile span-1 g3"><h4>Branchen</h4></article>
+          <article class="tile span-3-2 g4"><h4>Ueber uns</h4></article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

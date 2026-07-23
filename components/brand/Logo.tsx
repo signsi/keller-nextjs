@@ -10,7 +10,7 @@ interface LogoProps {
 export default function Logo({ className = '', variant = 'default', mode = 'full' }: LogoProps) {
   const isSymbol = mode === 'symbol'
   const src = isSymbol
-    ? (variant === 'white' ? '/logo-schnitt-weiss.svg' : '/logo-schnitt.svg')
+    ? (variant === 'white' ? '/logo-schnitt-weiss-weiss.svg' : '/logo-schnitt.svg')
     : '/logo.svg'
   const width = isSymbol ? 44 : 200
   const height = isSymbol ? 44 : 50

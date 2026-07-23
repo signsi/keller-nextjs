@@ -47,18 +47,19 @@
   --color-error:   #dc2626;
   --color-info:    #00a5ec;
 
-  /* ── Type scale ── */
+  /* ── Type scale (large-first) ── */
   --font-size-xs:   0.75rem;    /* 12px */
   --font-size-sm:   0.875rem;   /* 14px */
-  --font-size-base: 1rem;       /* 16px */
-  --font-size-md:   1.125rem;   /* 18px */
-  --font-size-lg:   1.25rem;    /* 20px */
-  --font-size-xl:   1.5rem;     /* 24px */
-  --font-size-2xl:  1.875rem;   /* 30px */
-  --font-size-3xl:  2.25rem;    /* 36px */
-  --font-size-4xl:  3rem;       /* 48px */
-  --font-size-5xl:  3.75rem;    /* 60px */
-  --font-size-6xl:  4.5rem;     /* 72px — hero display */
+  --font-size-base: 1.0625rem;  /* 17px */
+  --font-size-md:   1.1875rem;  /* 19px */
+  --font-size-lg:   1.375rem;   /* 22px */
+  --font-size-xl:   1.625rem;   /* 26px */
+  --font-size-2xl:  2rem;       /* 32px */
+  --font-size-3xl:  2.5rem;     /* 40px */
+  --font-size-4xl:  3.125rem;   /* 50px */
+  --font-size-5xl:  3.875rem;   /* 62px */
+  --font-size-6xl:  4.75rem;    /* 76px */
+  --font-size-7xl:  5.75rem;    /* 92px */
 
   /* ── Font weights ── */
   --font-weight-normal:   400;
@@ -79,18 +80,35 @@
   --letter-spacing-wide:    0.05em;
   --letter-spacing-wider:   0.1em;
 
-  /* ── Border radius (restrained — Swiss) ── */
-  --radius-sm:   2px;
-  --radius-md:   4px;
-  --radius-lg:   8px;
-  --radius-xl:   12px;
+  /* ── Border radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   18px;
+  --radius-2xl:  24px;
   --radius-full: 9999px;
 
   /* ── Shadows ── */
-  --shadow-sm:    0 1px 2px rgba(15, 17, 23, 0.06);
-  --shadow-md:    0 4px 12px rgba(15, 17, 23, 0.08);
-  --shadow-lg:    0 8px 32px rgba(15, 17, 23, 0.10);
+  --shadow-sm:    0 1px 3px rgba(15, 17, 23, 0.08);
+  --shadow-md:    0 10px 28px rgba(15, 17, 23, 0.10);
+  --shadow-lg:    0 20px 54px rgba(15, 17, 23, 0.14);
   --shadow-focus: 0 0 0 3px rgba(0, 165, 236, 0.25);
+
+  /* ── Spacing scale ── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
 
   /* ── Motion ── */
   --duration-instant: 50ms;
@@ -135,6 +153,25 @@
   --border-secondary: #ecedef;  /* steel-100 */
   --border-focus:     #00a5ec;  /* brand-500 */
 
+  /* Surface */
+  --surface-card:         #ffffff;
+  --surface-card-muted:   #f8fbff;
+  --surface-elevated:     #ffffff;
+  --surface-dark:         #1a1e26;
+  --surface-dark-elevated:#222830;
+
+  /* Components */
+  --input-bg:            #ffffff;
+  --input-border:        #8ea0b0;
+  --input-border-hover:  #6f8498;
+  --input-border-focus:  #00a5ec;
+  --button-primary-bg:   #00a5ec;
+  --button-primary-hover:#0091d4;
+  --button-primary-active:#007ab8;
+  --button-primary-text: #ffffff;
+  --button-ghost-text:   #1a1e26;
+  --button-ghost-hover:  #eef6fd;
+
   /* Accent */
   --accent-primary:        #00a5ec;  /* brand-500 */
   --accent-primary-hover:  #0091d4;  /* brand-600 */
@@ -144,10 +181,9 @@
   --max-width-content: 68ch;
   --max-width-wide:    1024px;
   --max-width-page:    1280px;
-  --page-x:            1.5rem;
-  --section-y:         5rem;
+  --page-x:            2rem;
+  --section-y:         6rem;
 
-  /* Surface */
   --overlay: rgba(15, 17, 23, 0.5);
 }
 
@@ -170,6 +206,23 @@
   --border-primary:   #2c3140;
   --border-secondary: #222830;
   --border-focus:     #29b8ff;
+
+  --surface-card:          #151a22;
+  --surface-card-muted:    #1a2029;
+  --surface-elevated:      #202734;
+  --surface-dark:          #0f1117;
+  --surface-dark-elevated: #1a1e26;
+
+  --input-bg:            #151a22;
+  --input-border:        #475567;
+  --input-border-hover:  #5b6b81;
+  --input-border-focus:  #29b8ff;
+  --button-primary-bg:   #29b8ff;
+  --button-primary-hover:#4dc9f4;
+  --button-primary-active:#00a5ec;
+  --button-primary-text: #081018;
+  --button-ghost-text:   #f0f2f5;
+  --button-ghost-hover:  #222830;
 
   --accent-primary:        #29b8ff;  /* brand-300 */
   --accent-primary-hover:  #4dc9f4;  /* brand-200 */
@@ -198,6 +251,23 @@
     --border-primary:   #2c3140;
     --border-secondary: #222830;
     --border-focus:     #29b8ff;
+
+    --surface-card:          #151a22;
+    --surface-card-muted:    #1a2029;
+    --surface-elevated:      #202734;
+    --surface-dark:          #0f1117;
+    --surface-dark-elevated: #1a1e26;
+
+    --input-bg:            #151a22;
+    --input-border:        #475567;
+    --input-border-hover:  #5b6b81;
+    --input-border-focus:  #29b8ff;
+    --button-primary-bg:   #29b8ff;
+    --button-primary-hover:#4dc9f4;
+    --button-primary-active:#00a5ec;
+    --button-primary-text: #081018;
+    --button-ghost-text:   #f0f2f5;
+    --button-ghost-hover:  #222830;
 
     --accent-primary:        #29b8ff;
     --accent-primary-hover:  #4dc9f4;

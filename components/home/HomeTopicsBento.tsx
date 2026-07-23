@@ -40,7 +40,7 @@ export default function HomeTopicsBento() {
                 </p>
               </div>
               <div className="relative min-h-72 w-full grow max-lg:mx-auto max-lg:max-w-sm">
-                <ColorPlaceholder title="Verfahren" gradient="bg-linear-to-br from-[#005f8d] via-[#1c7bb0] to-[#8fd3ff]" />
+                <ColorPlaceholder title="Verfahren" gradient="bg-linear-to-br from-[#005d9a] via-[#157fc1] to-[#66d4ff]" />
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 lg:rounded-l-4xl" />
@@ -57,7 +57,7 @@ export default function HomeTopicsBento() {
                 </p>
               </div>
               <div className="relative mt-4 min-h-44 flex-1">
-                <ColorPlaceholder title="Qualitaet" gradient="bg-linear-to-br from-[#5d6ea7] via-[#8996c3] to-[#d7def4]" />
+                <ColorPlaceholder title="Qualitaet" gradient="bg-linear-to-br from-[#1e5fb8] via-[#4f8ee0] to-[#9ac7ff]" />
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-t-4xl" />
@@ -74,7 +74,7 @@ export default function HomeTopicsBento() {
                 </p>
               </div>
               <div className="relative mt-4 min-h-44 flex-1">
-                <ColorPlaceholder title="Branchen" gradient="bg-linear-to-br from-[#45515c] via-[#6f8091] to-[#b7c4cf]" />
+                <ColorPlaceholder title="Branchen" gradient="bg-linear-to-br from-[#0f5d7c] via-[#2f90b3] to-[#82e0f2]" />
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5" />
@@ -91,7 +91,7 @@ export default function HomeTopicsBento() {
                 </p>
               </div>
               <div className="relative min-h-72 w-full grow">
-                <ColorPlaceholder title="Keller Galvanik AG" gradient="bg-linear-to-br from-[#8d9fb3] via-[#c7d4e1] to-[#eef4f9]" />
+                <ColorPlaceholder title="Keller Galvanik AG" gradient="bg-linear-to-br from-[#125f93] via-[#3f89bf] to-[#8ad8f5]" />
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-r-4xl" />
@@ -102,7 +102,7 @@ export default function HomeTopicsBento() {
           <article className="flex p-px lg:col-span-4">
             <div className="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-t-4xl lg:rounded-tl-4xl">
               <div className="relative h-72">
-                <ColorPlaceholder title="Verfahren Plus" gradient="bg-linear-to-r from-[#1f5d8b] via-[#2e89bf] to-[#7fcfff]" />
+                <ColorPlaceholder title="Verfahren Plus" gradient="bg-linear-to-r from-[#045f95] via-[#1d8bc4] to-[#5fd9ff]" />
               </div>
               <div className="p-10">
                 <h3 className="text-sm/4 font-semibold text-(--text-secondary)">Schwerpunkte</h3>
@@ -118,7 +118,7 @@ export default function HomeTopicsBento() {
           <article className="flex p-px lg:col-span-2">
             <div className="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-tr-4xl">
               <div className="relative h-72">
-                <ColorPlaceholder title="Zusammenarbeit" gradient="bg-linear-to-br from-[#4e6577] via-[#6c88a0] to-[#b4c7d6]" />
+                <ColorPlaceholder title="Zusammenarbeit" gradient="bg-linear-to-br from-[#0e6172] via-[#2a99ae] to-[#78e4ef]" />
               </div>
               <div className="p-10">
                 <h3 className="text-sm/4 font-semibold text-(--text-secondary)">Partnerschaft</h3>

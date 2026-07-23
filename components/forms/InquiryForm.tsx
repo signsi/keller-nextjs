@@ -48,9 +48,9 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
     setSubmitted(true)
   }
 
-  const inputBase = `w-full px-4 text-sm text-[var(--text-primary)] bg-[var(--bg-secondary)] rounded-[6px]
-    border border-[var(--border-secondary)] placeholder:text-[var(--text-tertiary)] outline-none
-    focus:border-[var(--border-focus)] focus:ring-2 focus:ring-[#00a5ec]/20 transition-all duration-150`
+  const inputBase = `w-full px-4 text-sm text-(--text-primary) bg-(--input-bg) rounded-md
+    border border-(--input-border) hover:border-(--input-border-hover) placeholder:text-(--text-tertiary) outline-none
+    focus:border-(--input-border-focus) focus:ring-2 focus:ring-brand-500/20 transition-all duration-150`
 
   const inputClass = (field: keyof typeof values) =>
     `${inputBase} h-11 ${errors[field] ? 'ring-2 ring-red-400/50' : ''}`
@@ -60,14 +60,14 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center text-center py-12 px-6 bg-[#e6f7fd] rounded-[8px]">
+      <div className="flex flex-col items-center justify-center px-6 py-12 text-center bg-brand-50 rounded-lg">
         <div className="w-10 h-10 rounded-full bg-[#00a5ec] flex items-center justify-center mb-4">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <path d="M3 9l4 4 8-8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-        <h3 className="text-base font-semibold text-[var(--text-primary)]">Anfrage gesendet</h3>
-        <p className="text-sm text-[var(--text-secondary)] mt-1.5 max-w-xs">
+        <h3 className="text-base font-semibold text-(--text-primary)">Anfrage gesendet</h3>
+        <p className="mt-1.5 max-w-xs text-sm text-(--text-secondary)">
           Wir melden uns innert 24 Stunden bei Ihnen. Danke für Ihr Interesse an Keller Galvanik.
         </p>
       </div>
@@ -127,13 +127,13 @@ export default function InquiryForm({ layout = 'inline', preselectedVerfahren = 
         <div className="sm:col-span-2 flex items-center justify-between gap-4">
           <button
             type="submit"
-            className="inline-flex items-center h-10 px-6 text-sm font-semibold text-white
-              bg-[#00a5ec] hover:bg-[#0091d4] active:bg-[#007ab8]
-              rounded-[4px] transition-colors duration-150 cursor-pointer"
+            className="inline-flex items-center h-10 px-6 text-sm font-semibold text-(--button-primary-text)
+              bg-(--button-primary-bg) hover:bg-(--button-primary-hover) active:bg-(--button-primary-active)
+              rounded-md transition-colors duration-150 cursor-pointer"
           >
             Anfrage senden
           </button>
-          <p className="text-xs text-[var(--text-tertiary)]">* Pflichtfelder</p>
+          <p className="text-xs text-(--text-tertiary)">* Pflichtfelder</p>
         </div>
 
       </div>
