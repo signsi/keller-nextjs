@@ -20,15 +20,13 @@ export default function HomeSurfacePartner({ settings }: Props) {
               Ihr Partner für Oberflächen
             </h2>
 
-            <p className="mt-7 text-xl sm:text-2xl leading-[1.45] tracking-[-0.015em] text-steel-800/88">
-              Die Keller Galvanik AG ist Ihr zuverlässiger Oberflächenpartner für hochwertige galvanische
-              Beschichtungen. Mit langjähriger Erfahrung, modernster Technik und hohem Qualitätsanspruch
-              entstehen Oberflächen, die funktional überzeugen und optisch begeistern.
+            <p className="mt-6 text-xl sm:text-2xl leading-[1.4] tracking-[-0.015em] text-steel-800/88">
+              Seit über 40 Jahren veredeln wir Bauteile für Maschinenbau, Medizinaltechnik und Elektronik.
             </p>
 
-            <p className="mt-8 text-lg sm:text-xl leading-normal text-steel-800/78">
-              Von der Beratung über die Entwicklung bis zur Serienproduktion begleiten wir Sie
-              partnerschaftlich und sorgen für verlässliche Ergebnisse bis ins Detail.
+            <p className="mt-4 text-base sm:text-lg leading-relaxed text-steel-800/70">
+              Galvanische und chemische Beschichtungen nach ISO 9001, von der Beratung bis zur
+              Serienproduktion, jede Charge dokumentiert und rückverfolgbar.
             </p>
 
             <div className="mt-10">

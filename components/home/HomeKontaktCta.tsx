@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import Container from '@/components/layout/Container'
 import SplitText from '@/components/animations/SplitText'
 import InquiryForm from '@/components/forms/InquiryForm'
-import { urlFor } from '@/sanity/lib/image'
 import type { SanitySettings, HomepageData } from '@/sanity/lib/types'
 
 type Props = {
@@ -11,14 +9,7 @@ type Props = {
 }
 
 export default function HomeKontaktCta({ settings, data }: Props) {
-  const person = settings?.ansprechperson
-  const telefon = person?.telefon ?? settings?.telefon ?? '+41 00 000 00 00'
-  const email = settings?.email ?? 'info@keller-galvanik.ch'
-  const name = person?.name ?? 'Kontakt'
-  const titel = person?.titel ?? 'Technische Beratung'
-  const portraitUrl = person?.portrait
-    ? urlFor(person.portrait).width(480).height(480).fit('crop').url()
-    : '/peter-keller-portrait.webp'
+  const name = settings?.ansprechperson?.name ?? 'Peter Keller'
 
   const bullets = data?.bullets && data.bullets.length > 0
     ? data.bullets
@@ -28,8 +19,8 @@ export default function HomeKontaktCta({ settings, data }: Props) {
     <section className="bg-white py-12 lg:py-20">
       <Container>
         <div className="rounded-[22px] bg-brand-800 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:items-center">
-            <div className="lg:pr-4">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:items-start">
+            <div className="lg:sticky lg:top-24 lg:pr-4">
               <p data-reveal className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/70">
                 {data?.kicker ?? 'Offerte anfragen'}
               </p>
@@ -37,7 +28,7 @@ export default function HomeKontaktCta({ settings, data }: Props) {
                 {data?.heading ?? 'Schnell zum Angebot.'}
               </SplitText>
               <p data-reveal className="mt-4 max-w-md text-sm leading-relaxed text-white/75">
-                {data?.body ?? 'Beschreiben Sie Ihr Projekt — wir melden uns schnell und geben Ihnen eine klare Ersteinschätzung.'}
+                {data?.body ?? 'Beschreiben Sie Ihr Projekt. Wir melden uns schnell und geben Ihnen eine klare Ersteinschätzung.'}
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2 text-xs text-white/80">
@@ -49,7 +40,7 @@ export default function HomeKontaktCta({ settings, data }: Props) {
               </div>
             </div>
 
-            <div data-reveal className="lg:max-w-xl lg:justify-self-end">
+            <div data-reveal className="lg:max-w-md lg:justify-self-end">
               <InquiryForm layout="inline" contactName={name} />
             </div>
           </div>

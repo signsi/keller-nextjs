@@ -80,9 +80,11 @@ export default function InquiryForm({
   const labelClass = 'mb-1.5 block text-xs font-semibold text-white/60'
   const isFull = layout === 'full'
 
+  const panelClass = isFull ? 'rounded-[22px] bg-brand-800 px-6 py-7 sm:px-8 sm:py-8 lg:px-10 lg:py-10' : ''
+
   if (submitted) {
     return (
-      <div className="rounded-[22px] bg-brand-800 px-7 py-10 sm:px-10 sm:py-12">
+      <div className={isFull ? 'rounded-[22px] bg-brand-800 px-7 py-10 sm:px-10 sm:py-12' : ''}>
         <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <path d="M3 9l4 4 8-8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -100,19 +102,16 @@ export default function InquiryForm({
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-[22px] bg-brand-800 px-6 py-7 sm:px-8 sm:py-8 lg:px-10 lg:py-10"
+      className={panelClass}
     >
 
       <div className="space-y-7 sm:space-y-8">
 
         <div>
-          <p className="mb-4 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/35">
-            <span className="text-base font-black tabular-nums text-white/70">01</span>
-            Ihre Angaben
-          </p>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/40">Ihre Angaben</p>
           <div className="grid grid-cols-1 gap-(--form-gap) sm:grid-cols-2">
             <div>
-              <label htmlFor="inq-name" className={labelClass}>Name *</label>
+              <label htmlFor="inq-name" className={labelClass}>Name</label>
               <input
                 id="inq-name" type="text" autoComplete="name"
                 placeholder="Max Muster"
@@ -123,7 +122,7 @@ export default function InquiryForm({
             </div>
 
             <div>
-              <label htmlFor="inq-email" className={labelClass}>E-Mail *</label>
+              <label htmlFor="inq-email" className={labelClass}>E-Mail</label>
               <input
                 id="inq-email" type="email" autoComplete="email"
                 placeholder="max@firma.ch"
@@ -136,25 +135,22 @@ export default function InquiryForm({
         </div>
 
         <div>
-          <p className="mb-4 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/35">
-            <span className="text-base font-black tabular-nums text-white/70">02</span>
-            Ihr Anliegen
-          </p>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/40">Ihr Anliegen</p>
           <div className="space-y-(--form-gap)">
             <div>
-              <label htmlFor="inq-verfahren" className={labelClass}>Verfahren</label>
+              <label htmlFor="inq-verfahren" className={labelClass}>Verfahren (optional)</label>
               <select
                 id="inq-verfahren"
                 value={values.verfahren} onChange={set('verfahren')}
                 className={`${inputClass('verfahren')} cursor-pointer`}
               >
-                <option className="text-steel-800" value="">Verfahren wählen (optional)</option>
+                <option className="text-steel-800" value="">Verfahren wählen</option>
                 {verfahrenOptions.map(v => <option className="text-steel-800" key={v} value={v}>{v}</option>)}
               </select>
             </div>
 
             <div>
-              <label htmlFor="inq-nachricht" className={labelClass}>Nachricht *</label>
+              <label htmlFor="inq-nachricht" className={labelClass}>Nachricht</label>
               <textarea
                 id="inq-nachricht"
                 rows={isFull ? 5 : 3}
@@ -190,14 +186,13 @@ export default function InquiryForm({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 pt-6">
+        <div className="pt-6">
           <button
             type="submit"
             className="ui-button bg-white text-brand-800 hover:bg-white/90 cursor-pointer"
           >
             Anfrage senden
           </button>
-          <p className="text-xs text-white/35">* Pflichtfelder</p>
         </div>
 
       </div>
