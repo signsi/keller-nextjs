@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 const defaultStats = [
-  { value: 'ISO 9001', label: 'Zertifiziert seit 1998' },
+  { value: '99%', label: 'Kundenzufriedenheit' },
   { value: '40+', label: 'Jahre Erfahrung' },
   { value: '< 24h', label: 'Angebotsfrist' },
   { value: '100%', label: 'Rückverfolgbar' },

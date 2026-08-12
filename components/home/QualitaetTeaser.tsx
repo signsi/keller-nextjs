@@ -11,7 +11,7 @@ const defaults = {
   heading: 'Jeder Auftrag dokumentiert.',
   body: 'Unsere Prozesse sind nach ISO 9001 zertifiziert. Jede Charge wird dokumentiert, geprüft und rückverfolgbar archiviert.',
   stats: [
-    { value: 'ISO 9001', label: 'Zertifiziert seit 1998' },
+    { value: '99%', label: 'Kundenzufriedenheit' },
     { value: '40+', label: 'Jahre Erfahrung' },
     { value: '< 24h', label: 'Angebotsfrist' },
   ],

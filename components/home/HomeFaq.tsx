@@ -12,8 +12,7 @@ const defaultFaq = [
   { question: 'Wie schnell erhalte ich ein Angebot?', answer: 'Standardanfragen beantworten wir innert 24 Stunden. Bei komplexen Anfragen mit Zeichnungen oder Sonderverfahren melden wir uns am nächsten Werktag mit einer ersten Einschätzung.' },
   { question: 'Welche Mengen sind möglich?', answer: 'Von Einzelteilen bis zu Grossserien — ohne Mindestbestellmenge bei Erstaufträgen.' },
   { question: 'Können mehrere Verfahren kombiniert werden?', answer: 'Ja. Typische Kombinationen sind Verzinken + Pulverbeschichten oder Chemisch Vernickeln + Elektropolieren — alles aus einer Hand.' },
-  { question: 'Muss ich eine Zeichnung einreichen?', answer: 'Nicht zwingend. Eine kurze Beschreibung des Bauteils, Werkstoffs und der Anforderung genügt für eine erste Einschätzung.' },
-  { question: 'Welche Zertifizierungen haben Sie?', answer: 'ISO 9001. Beschichtungen nach DIN EN ISO- und ASTM-Normen. Spezifische Zertifikate auf Anfrage.' },
+  { question: 'Muss ich eine Zeichnung einreichen?', answer: 'Nicht zwingend. Eine kurze Beschreibung des Bauteils, Werkstoffs und der Anforderung genügt für eine erste Einschätzung.' }
 ]
 
 export default function HomeFaq({ items }: Props) {

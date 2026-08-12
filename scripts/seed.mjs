@@ -43,7 +43,7 @@ const homepage = {
     heading: 'Jeder Auftrag dokumentiert.',
     body: 'Unsere Prozesse sind nach ISO 9001 zertifiziert. Jede Charge wird dokumentiert, geprüft und rückverfolgbar archiviert.',
     stats: [
-      { _key: 's0', value: 'ISO 9001', label: 'Zertifiziert seit 1998' },
+      { _key: 's0', value: '99%', label: 'Kundenzufriedenheit' },
       { _key: 's1', value: '40+', label: 'Jahre Erfahrung' },
       { _key: 's2', value: '< 24h', label: 'Angebotsfrist' },
     ],
@@ -367,7 +367,7 @@ const qualitaet = {
     intro: 'Jeder Auftrag durchläuft ein dokumentiertes Qualitätssystem nach ISO 9001. Prüfberichte, Schichtdickenprotokolle und Materialzertifikate werden auf Wunsch mitgeliefert — lückenlose Rückverfolgbarkeit inklusive.',
   },
   stats: [
-    { _key: 'st0', value: 'ISO 9001', label: 'Zertifiziert seit 1998' },
+    { _key: 'st0', value: '99%', label: 'Kundenzufriedenheit' },
     { _key: 'st1', value: '40+', label: 'Jahre Erfahrung' },
     { _key: 'st2', value: '< 24h', label: 'Angebotsfrist' },
     { _key: 'st3', value: '100%', label: 'Rückverfolgbar' },

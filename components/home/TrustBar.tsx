@@ -65,7 +65,7 @@ const visuals = [
         <p className="text-[10px] font-semibold text-(--text-tertiary) uppercase tracking-widest mb-3">Qualitätssicherung</p>
         <div className="grid grid-cols-2 gap-2">
           {[
-            { value: 'ISO 9001', sub: 'Zertifiziert' },
+            { value: '99%', sub: 'Kundenzufriedenheit' },
             { value: '< 24h', sub: 'Angebotsfrist' },
             { value: '40+', sub: 'Jahre Erfahrung' },
             { value: '100%', sub: 'Rückverfolgbar' },
