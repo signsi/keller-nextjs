@@ -9,13 +9,8 @@ import { PortableText } from '@portabletext/react'
 import { client } from '@/sanity/lib/client'
 import { allVerfahrenQuery, verfahrenBySlugQuery } from '@/sanity/lib/queries'
 import type { SanityVerfahren } from '@/sanity/lib/types'
-
-const tagColors: Record<string, { bg: string; text: string }> = {
-  Korrosionsschutz: { bg: '#dff0fb', text: '#1a6fa0' },
-  Optik:            { bg: '#f0f4ff', text: '#4060c0' },
-  Verschleiss:      { bg: '#fff8f5', text: '#c0531a' },
-  Werkstoff:        { bg: '#f2f7f2', text: '#4a7a50' },
-}
+import Eyebrow from '@/components/ui/Eyebrow'
+import { kategorieTagStyles, defaultKategorieTagStyle } from '@/lib/verfahren-kategorien'
 
 export async function generateStaticParams() {
   const verfahren: SanityVerfahren[] = await client.fetch(allVerfahrenQuery)
@@ -41,27 +36,26 @@ export default async function VerfahrenDetailPage(
   const v: SanityVerfahren | null = await client.fetch(verfahrenBySlugQuery, { slug })
   if (!v) notFound()
 
-  const tagColor = tagColors[v.kategorie ?? ''] ?? { bg: '#dff0fb', text: '#1a6fa0' }
+  const tagColor = kategorieTagStyles[v.kategorie ?? ''] ?? defaultKategorieTagStyle
 
   return (
     <>
       {/* Hero */}
       <section className="bg-white pt-10 pb-0">
         <Container>
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+          <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+            <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/verfahren" className="hover:text-[var(--text-primary)] transition-colors">Verfahren</Link>
+            <Link href="/verfahren" className="hover:text-(--text-primary) transition-colors">Verfahren</Link>
             <span>/</span>
-            <span className="text-[var(--text-secondary)]">{v.name}</span>
+            <span className="text-(--text-secondary)">{v.name}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10 lg:gap-16 pb-14 items-start">
             <div>
               {v.kategorie && (
                 <span
-                  className="inline-flex text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-[4px] mb-5"
-                  style={{ background: tagColor.bg, color: tagColor.text }}
+                  className={`inline-flex text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-sm mb-5 ${tagColor}`}
                 >
                   {v.kategorie}
                 </span>
@@ -69,12 +63,12 @@ export default async function VerfahrenDetailPage(
               <SplitText
                 as="h1"
                 trigger="mount"
-                className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-[var(--text-primary)] leading-tight mb-5"
+                className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-(--text-primary) leading-tight mb-5"
               >
                 {v.name}
               </SplitText>
               {v.beschreibung && (
-                <p data-reveal className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+                <p data-reveal className="text-base sm:text-lg text-(--text-secondary) leading-relaxed max-w-2xl">
                   {v.beschreibung}
                 </p>
               )}
@@ -82,19 +76,19 @@ export default async function VerfahrenDetailPage(
 
             {/* Specs card */}
             {v.merkmale && v.merkmale.length > 0 && (
-              <div data-reveal className="lg:sticky lg:top-24 bg-[var(--bg-secondary)] rounded-[16px] p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
+              <div data-reveal className="lg:sticky lg:top-24 bg-(--bg-secondary) rounded-[16px] p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-4">
                   Technische Daten
                 </p>
                 <dl className="space-y-3">
                   {v.merkmale.map(({ label, wert }) => (
                     <div key={label}>
-                      <dt className="text-xs text-[var(--text-tertiary)] mb-0.5">{label}</dt>
-                      <dd className="text-sm font-medium text-[var(--text-primary)]">{wert}</dd>
+                      <dt className="text-xs text-(--text-tertiary) mb-0.5">{label}</dt>
+                      <dd className="text-sm font-medium text-(--text-primary)">{wert}</dd>
                     </div>
                   ))}
                 </dl>
-                <div className="mt-6 pt-4 border-t border-[var(--border-secondary)]">
+                <div className="mt-6 pt-4 border-t border-(--border-secondary)">
                   <Link
                     href={`/kontakt?verfahren=${encodeURIComponent(v.name)}`}
                     className="ui-button ui-button-primary flex w-full"
@@ -112,7 +106,7 @@ export default async function VerfahrenDetailPage(
       {v.intro && v.intro.length > 0 && (
         <section className="bg-white pb-14">
           <Container>
-            <div data-reveal className="max-w-2xl prose prose-sm text-[var(--text-secondary)] leading-relaxed">
+            <div data-reveal className="max-w-2xl prose prose-sm text-(--text-secondary) leading-relaxed">
               <PortableText value={v.intro} />
             </div>
           </Container>
@@ -121,22 +115,22 @@ export default async function VerfahrenDetailPage(
 
       {/* Vorteile */}
       {v.vorteile && v.vorteile.length > 0 && (
-        <section className="bg-[var(--bg-secondary)] py-14 lg:py-20">
+        <section className="bg-(--bg-secondary) py-14 lg:py-20">
           <Container>
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">
+            <Eyebrow className="mb-3">
               Vorteile
-            </p>
-            <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-[var(--text-primary)] mb-10">
+            </Eyebrow>
+            <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-(--text-primary) mb-10">
               Warum {v.name}?
             </SplitText>
             <div data-reveal-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {v.vorteile.map(({ titel, text }, i) => (
                 <div key={titel ?? i} className="bg-white rounded-[14px] p-6">
-                  <span className="text-2xl font-black text-[var(--bg-tertiary)] tabular-nums leading-none">
+                  <span className="text-2xl font-black text-(--bg-tertiary) tabular-nums leading-none">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="text-base font-semibold text-[var(--text-primary)] mt-3 mb-2 leading-snug">{titel}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{text}</p>
+                  <h3 className="text-base font-semibold text-(--text-primary) mt-3 mb-2 leading-snug">{titel}</h3>
+                  <p className="text-sm text-(--text-secondary) leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
@@ -150,8 +144,8 @@ export default async function VerfahrenDetailPage(
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20">
               <div>
-                <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">FAQ</p>
-                <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-[var(--text-primary)]">
+                <Eyebrow className="mb-3">FAQ</Eyebrow>
+                <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-(--text-primary)">
                   Häufige Fragen.
                 </SplitText>
               </div>

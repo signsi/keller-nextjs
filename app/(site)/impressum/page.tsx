@@ -11,49 +11,49 @@ export default function ImpressumPage() {
   return (
     <section className="bg-white pt-10 pb-20">
       <Container>
-        <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-          <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+        <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+          <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-[var(--text-secondary)]">Impressum</span>
+          <span className="text-(--text-secondary)">Impressum</span>
         </nav>
 
         <div className="max-w-2xl">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-[-0.025em] text-[var(--text-primary)] mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-[-0.025em] text-(--text-primary) mb-10">
             Impressum
           </h1>
 
-          <div className="space-y-8 text-sm text-[var(--text-secondary)] leading-relaxed">
+          <div className="space-y-8 text-sm text-(--text-secondary) leading-relaxed">
 
             <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-3">
                 Unternehmen
               </h2>
-              <p className="font-semibold text-[var(--text-primary)]">Keller Galvanik AG</p>
+              <p className="font-semibold text-(--text-primary)">Keller Galvanik AG</p>
               <p>Musterstrasse 1</p>
               <p>0000 Musterort</p>
               <p>Schweiz</p>
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-3">
                 Kontakt
               </h2>
               <p>
                 Telefon:{' '}
-                <a href="tel:+41000000000" className="text-[var(--text-primary)] hover:text-[#0091d4] transition-colors">
+                <a href="tel:+41000000000" className="text-(--text-primary) hover:text-brand-600 transition-colors">
                   +41 00 000 00 00
                 </a>
               </p>
               <p>
                 E-Mail:{' '}
-                <a href="mailto:info@keller-galvanik.ch" className="text-[var(--text-primary)] hover:text-[#0091d4] transition-colors">
+                <a href="mailto:info@keller-galvanik.ch" className="text-(--text-primary) hover:text-brand-600 transition-colors">
                   info@keller-galvanik.ch
                 </a>
               </p>
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-3">
                 Handelsregister
               </h2>
               <p>Eingetragen im Handelsregister des Kantons Zürich</p>
@@ -61,15 +61,15 @@ export default function ImpressumPage() {
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-3">
                 Verantwortlich für den Inhalt
               </h2>
-              <p className="font-semibold text-[var(--text-primary)]">Peter Keller</p>
+              <p className="font-semibold text-(--text-primary)">Peter Keller</p>
               <p>Geschäftsführer, Keller Galvanik AG</p>
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-3">
                 Haftungsausschluss
               </h2>
               <p>
@@ -78,7 +78,7 @@ export default function ImpressumPage() {
             </div>
 
             <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-3">
                 Urheberrecht
               </h2>
               <p>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Container from '@/components/layout/Container'
 import SplitText from '@/components/animations/SplitText'
 import type { HomepageData } from '@/sanity/lib/types'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 type Props = { data?: HomepageData['qualitaet'] }
 
@@ -27,9 +28,9 @@ export default function QualitaetTeaser({ data }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
           <div>
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">
+            <Eyebrow className="mb-3">
               {d.kicker}
-            </p>
+            </Eyebrow>
             <SplitText className="text-3xl sm:text-4xl font-bold leading-tight tracking-[-0.02em] text-white">
               {d.heading}
             </SplitText>
@@ -50,7 +51,7 @@ export default function QualitaetTeaser({ data }: Props) {
 
           <div data-reveal-stagger className="grid grid-cols-3 gap-3">
             {stats.slice(0, 3).map(({ value, label }) => (
-              <div key={label} className="bg-white/[0.06] rounded-[12px] px-4 py-8 flex flex-col items-center text-center">
+              <div key={label} className="bg-white/[0.06] rounded-lg px-4 py-8 flex flex-col items-center text-center">
                 <span className="text-2xl lg:text-3xl font-bold text-white tracking-tight tabular-nums">{value}</span>
                 <span className="text-xs text-white/40 mt-2 leading-snug">{label}</span>
               </div>

@@ -19,7 +19,7 @@ export default function CtaStrip({
   const isBlue = variant === 'blue'
 
   return (
-    <section className={`py-16 ${isBlue ? 'bg-[#00a5ec]' : 'bg-steel-800'}`}>
+    <section className={`py-16 ${isBlue ? 'bg-brand-500' : 'bg-steel-800'}`}>
       <Container>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
@@ -37,7 +37,7 @@ export default function CtaStrip({
               href={primaryCta.href}
               className={`ui-button
                 ${isBlue
-                  ? 'bg-white text-[#0083bd] hover:bg-white/90'
+                  ? 'bg-white text-brand-700 hover:bg-white/90'
                   : 'ui-button-primary'
                 }`}
             >

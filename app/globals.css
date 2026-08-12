@@ -183,7 +183,7 @@
   --button-primary-bg:   #00a5ec;
   --button-primary-hover:#0091d4;
   --button-primary-active:#007ab8;
-  --button-primary-text: #ffffff;
+  --button-primary-text: #0f1117;
   --button-height:       2.75rem;
   --button-radius:       9999px;
   --button-padding-x:    1.5rem;
@@ -262,6 +262,11 @@ body {
   box-shadow: var(--card-shadow-hover);
 }
 
+.ui-card-interactive:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
 .ui-label {
   display: block;
   margin-bottom: 0.5rem;
@@ -311,6 +316,11 @@ body {
   font-size: var(--font-size-sm);
   font-weight: 600;
   transition: background-color var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default), border-color var(--duration-fast) var(--ease-default);
+}
+
+.ui-button:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
 }
 
 .ui-button-sm {

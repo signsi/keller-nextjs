@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  'ui-button tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--border-focus) focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 cursor-pointer'
+  'ui-button tracking-wide disabled:pointer-events-none disabled:opacity-40 cursor-pointer'
 
 const variants: Record<Variant, string> = {
   primary: 'ui-button-primary',

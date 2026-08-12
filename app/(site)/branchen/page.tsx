@@ -8,6 +8,7 @@ import { client } from '@/sanity/lib/client'
 import { allBranchenQuery, seitenInhalteQuery } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityBranche, SeitenInhalteData } from '@/sanity/lib/types'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Branchen',
@@ -26,31 +27,31 @@ export default async function BranchenPage() {
     <>
       <section className="bg-white pt-10 pb-0">
         <Container>
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+          <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+            <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[var(--text-secondary)]">Branchen</span>
+            <span className="text-(--text-secondary)">Branchen</span>
           </nav>
           <div className="max-w-2xl pb-14">
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-4">
+            <Eyebrow className="mb-4">
               {s?.kicker ?? 'Branchen'}
-            </p>
-            <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-[var(--text-primary)] leading-tight mb-5">
+            </Eyebrow>
+            <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-(--text-primary) leading-tight mb-5">
               {s?.heading ?? 'Breite Erfahrung aus verschiedensten Bereichen.'}
             </SplitText>
-            <p data-reveal className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+            <p data-reveal className="text-base sm:text-lg text-(--text-secondary) leading-relaxed">
               {s?.intro ?? 'Wir bringen eine breite Erfahrung aus verschiedensten Bereichen mit — von der Feinmechanik über die Medizintechnik bis hin zur Elektro- und Maschinenindustrie.'}
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="bg-[var(--bg-secondary)] py-14 lg:py-20">
+      <section className="bg-(--bg-secondary) py-14 lg:py-20">
         <Container>
           <div data-reveal-stagger className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
             {branchen.map(b => (
               <Link key={b._id} href={`/branchen/${b.slug.current}`} className="group block">
-                <div className="rounded-[12px] overflow-hidden bg-white aspect-square relative shadow-[0_1px_4px_rgba(15,17,23,0.07)] group-hover:shadow-[0_6px_20px_rgba(15,17,23,0.12)] transition-shadow duration-200">
+                <div className="rounded-lg overflow-hidden bg-white aspect-square relative shadow-[0_1px_4px_rgba(15,17,23,0.07)] group-hover:shadow-[0_6px_20px_rgba(15,17,23,0.12)] transition-shadow duration-200">
                   {b.bild ? (
                     <Image
                       src={urlFor(b.bild).width(400).height(400).fit('crop').url()}
@@ -69,7 +70,7 @@ export default async function BranchenPage() {
                     />
                   )}
                 </div>
-                <p className="mt-2.5 px-0.5 text-sm font-semibold text-[var(--text-primary)] group-hover:text-[#0091d4] transition-colors leading-snug">
+                <p className="mt-2.5 px-0.5 text-sm font-semibold text-(--text-primary) group-hover:text-brand-600 transition-colors leading-snug">
                   {b.name}
                 </p>
               </Link>

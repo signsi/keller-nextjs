@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { client } from '@/sanity/lib/client'
 import { allVerfahrenQuery, seitenInhalteQuery } from '@/sanity/lib/queries'
 import type { SanityVerfahren, SeitenInhalteData } from '@/sanity/lib/types'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Verfahren',
@@ -25,26 +26,26 @@ export default async function VerfahrenPage() {
     <>
       <section className="bg-white pt-10 pb-0">
         <Container>
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+          <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+            <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[var(--text-secondary)]">Verfahren</span>
+            <span className="text-(--text-secondary)">Verfahren</span>
           </nav>
           <div className="max-w-2xl pb-14">
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-4">
+            <Eyebrow className="mb-4">
               {s?.kicker ?? 'Oberflächentechnik'}
-            </p>
-            <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-[var(--text-primary)] leading-tight mb-5">
+            </Eyebrow>
+            <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-(--text-primary) leading-tight mb-5">
               {s?.heading ?? 'Das richtige Verfahren für Ihr Bauteil.'}
             </SplitText>
-            <p data-reveal className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+            <p data-reveal className="text-base sm:text-lg text-(--text-secondary) leading-relaxed">
               {s?.intro ?? 'Galvanische und chemische Beschichtungsverfahren für Korrosionsschutz, Verschleissbeständigkeit, Optik und Werkstoffeigenschaften.'}
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="bg-[var(--bg-secondary)] py-12 lg:py-16">
+      <section className="bg-(--bg-secondary) py-12 lg:py-16">
         <Container>
           <VerfahrenGrid verfahren={verfahren} />
         </Container>

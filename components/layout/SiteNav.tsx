@@ -21,7 +21,10 @@ export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const homeOverlayMode = isHome && !scrolled && !megaOpen && !open
+  // Geometry (position/padding) must stay stable across mega-menu hover — only
+  // background/text color should react to megaOpen, otherwise the header jumps.
+  const geometryOverlay = isHome && !scrolled && !open
+  const homeOverlayMode = geometryOverlay && !megaOpen
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 72)
@@ -52,14 +55,13 @@ export default function SiteNav() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-300
-          ${homeOverlayMode
-            ? 'top-7 md:top-8 lg:top-10 mx-2 md:mx-4 lg:mx-5 bg-transparent'
-            : 'top-2 md:top-3 lg:top-4 mx-2 md:mx-4 lg:mx-5 bg-white'
-          }
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 mx-2 md:mx-4 lg:mx-5
+          ${geometryOverlay ? 'top-7 md:top-8 lg:top-10' : 'top-2 md:top-3 lg:top-4'}
+          ${homeOverlayMode ? 'bg-transparent' : 'bg-white'}
+          ${megaOpen ? 'rounded-t-[22px]' : 'rounded-[22px]'}
           ${scrolled || megaOpen ? 'shadow-[0_2px_16px_rgba(15,17,23,0.08)]' : ''}`}
       >
-        <div className={`w-full ${homeOverlayMode ? 'px-6 sm:px-8 lg:px-14' : 'px-4 sm:px-6 md:px-8 lg:px-10'}`}>
+        <div className="w-full px-6 sm:px-8 lg:px-14">
           <div className="flex h-16 items-center justify-between gap-8">
 
             <Logo
@@ -88,7 +90,7 @@ export default function SiteNav() {
                         ${homeOverlayMode
                           ? ''
                           : `after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
-                            after:bg-[#00a5ec] after:transition-transform after:duration-200 after:origin-left
+                            after:bg-brand-500 after:transition-transform after:duration-200 after:origin-left
                             ${isActive(href) || megaOpen ? 'after:scale-x-100' : 'after:scale-x-0'}`
                         }`}
                     >
@@ -115,7 +117,7 @@ export default function SiteNav() {
                       ${homeOverlayMode
                         ? ''
                         : `after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
-                          after:bg-[#00a5ec] after:transition-transform after:duration-200 after:origin-left
+                          after:bg-brand-500 after:transition-transform after:duration-200 after:origin-left
                           ${isActive(href) ? 'after:scale-x-100' : 'after:scale-x-0'}`
                       }`}
                   >
@@ -137,6 +139,7 @@ export default function SiteNav() {
             <button
               onClick={() => setOpen(true)}
               className={`md:hidden flex flex-col gap-1.25 w-10 h-10 items-center justify-center rounded-full transition-colors
+                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-focus)
                 ${homeOverlayMode ? 'hover:bg-white/10' : 'hover:bg-(--bg-secondary)'}`}
               aria-label="Navigation öffnen"
               aria-expanded={open}
@@ -180,7 +183,7 @@ export default function SiteNav() {
             <Logo variant="white" />
             <button
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-10 h-10 rounded-full text-white/60 hover:text-white transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-full text-white/60 hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-focus)"
               aria-label="Navigation schliessen"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -196,7 +199,7 @@ export default function SiteNav() {
                 href={href}
                 onClick={() => setOpen(false)}
                 className={`py-4 text-3xl font-semibold transition-colors
-                  ${isActive(href) ? 'text-[#00a5ec]' : 'text-white/80 hover:text-white'}`}
+                  ${isActive(href) ? 'text-brand-500' : 'text-white/80 hover:text-white'}`}
               >
                 {label}
               </Link>

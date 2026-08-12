@@ -8,6 +8,7 @@ import { client } from '@/sanity/lib/client'
 import { siteSettingsQuery, ueberUnsQuery } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanitySettings, UeberUnsData } from '@/sanity/lib/types'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Über uns',
@@ -51,25 +52,25 @@ export default async function UeberUnsPage() {
       {/* Hero */}
       <section className="bg-white pt-10 pb-0">
         <Container>
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+          <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+            <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[var(--text-secondary)]">Über uns</span>
+            <span className="text-(--text-secondary)">Über uns</span>
           </nav>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 pb-14 items-start">
             <div>
-              <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-4">
+              <Eyebrow className="mb-4">
                 {hero?.kicker ?? 'Über uns'}
-              </p>
-              <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-[var(--text-primary)] leading-tight mb-5">
+              </Eyebrow>
+              <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-(--text-primary) leading-tight mb-5">
                 {hero?.heading ?? 'Seit über 40 Jahren. Keller Galvanik AG.'}
               </SplitText>
-              <div data-reveal className="space-y-4 text-base text-[var(--text-secondary)] leading-relaxed max-w-xl">
+              <div data-reveal className="space-y-4 text-base text-(--text-secondary) leading-relaxed max-w-xl">
                 {bodyParagraphs.map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
             <div data-reveal className="lg:sticky lg:top-24">
-              <div className="bg-[var(--bg-secondary)] rounded-[16px] overflow-hidden">
+              <div className="bg-(--bg-secondary) rounded-[16px] overflow-hidden">
                 <Image
                   src="/branchen/maschinen-apparatebau.webp"
                   alt="Keller Galvanik Betrieb"
@@ -78,9 +79,9 @@ export default async function UeberUnsPage() {
                   className="w-full object-cover h-[220px]"
                 />
                 <div className="p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-1">Standort</p>
-                  <p className="text-sm font-semibold text-[var(--text-primary)]">{settings?.firmenname ?? 'Keller Galvanik AG'}</p>
-                  <p className="text-sm text-[var(--text-secondary)] mt-0.5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-1">Standort</p>
+                  <p className="text-sm font-semibold text-(--text-primary)">{settings?.firmenname ?? 'Keller Galvanik AG'}</p>
+                  <p className="text-sm text-(--text-secondary) mt-0.5">
                     {settings?.strasse ? `${settings.strasse}, ${settings.plzOrt}` : 'Deutschschweiz'}
                   </p>
                 </div>
@@ -91,15 +92,15 @@ export default async function UeberUnsPage() {
       </section>
 
       {/* Werte */}
-      <section className="bg-[var(--bg-secondary)] py-14 lg:py-20">
+      <section className="bg-(--bg-secondary) py-14 lg:py-20">
         <Container>
-          <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">Unsere Werte</p>
-          <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-[var(--text-primary)] mb-10">Was uns antreibt.</SplitText>
+          <Eyebrow className="mb-3">Unsere Werte</Eyebrow>
+          <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-(--text-primary) mb-10">Was uns antreibt.</SplitText>
           <div data-reveal-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {werte.map(({ title, body }) => (
               <div key={title} className="bg-white rounded-[14px] p-6">
-                <h3 className="text-base font-bold text-[var(--text-primary)] mb-2">{title}</h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{body}</p>
+                <h3 className="text-base font-bold text-(--text-primary) mb-2">{title}</h3>
+                <p className="text-sm text-(--text-secondary) leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
@@ -109,10 +110,10 @@ export default async function UeberUnsPage() {
       {/* Team */}
       <section className="bg-white py-14 lg:py-20">
         <Container>
-          <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">Team</p>
-          <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-[var(--text-primary)] mb-10">Ihr Ansprechpartner.</SplitText>
+          <Eyebrow className="mb-3">Team</Eyebrow>
+          <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-(--text-primary) mb-10">Ihr Ansprechpartner.</SplitText>
           <div data-reveal className="flex flex-col sm:flex-row gap-8 items-start max-w-xl">
-            <div className="shrink-0 w-[120px] h-[140px] rounded-[14px] overflow-hidden bg-[var(--bg-secondary)]">
+            <div className="shrink-0 w-[120px] h-[140px] rounded-[14px] overflow-hidden bg-(--bg-secondary)">
               <Image
                 src={portraitUrl}
                 alt={person?.name ?? 'Peter Keller'}
@@ -122,9 +123,9 @@ export default async function UeberUnsPage() {
               />
             </div>
             <div>
-              <p className="text-lg font-bold text-[var(--text-primary)] tracking-[-0.01em]">{person?.name ?? 'Peter Keller'}</p>
-              <p className="text-sm text-[var(--text-tertiary)] mt-0.5 mb-3">{person?.titel ?? 'Geschäftsführer'}</p>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+              <p className="text-lg font-bold text-(--text-primary) tracking-[-0.01em]">{person?.name ?? 'Peter Keller'}</p>
+              <p className="text-sm text-(--text-tertiary) mt-0.5 mb-3">{person?.titel ?? 'Geschäftsführer'}</p>
+              <p className="text-sm text-(--text-secondary) leading-relaxed mb-5">
                 {person?.name ?? 'Peter Keller'} führt den Betrieb mit Leidenschaft für das Handwerk und tiefem technischem Know-how. Er steht für persönliche Beratung und ist direkter Ansprechpartner für alle technischen und kaufmännischen Fragen.
               </p>
               <div className="flex gap-3">

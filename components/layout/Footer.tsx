@@ -6,7 +6,7 @@ const verfahren = [
   { href: '/verfahren/chemisch-vernickeln', label: 'Chemisch Vernickeln' },
   { href: '/verfahren/galvanisch-verzinken', label: 'Galvanisch Verzinken' },
   { href: '/verfahren/elektropolieren', label: 'Elektropolieren' },
-  { href: '/verfahren/hartchrom', label: 'Hartchrom' },
+  { href: '/verfahren/pulverbeschichten', label: 'Pulverbeschichten' },
 ]
 
 const unternehmen = [

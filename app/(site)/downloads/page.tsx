@@ -6,6 +6,7 @@ import SplitText from '@/components/animations/SplitText'
 import { client } from '@/sanity/lib/client'
 import { allDownloadsQuery } from '@/sanity/lib/queries'
 import type { SanityDownload } from '@/sanity/lib/types'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export const metadata: Metadata = {
   title: 'Downloads',
@@ -35,7 +36,7 @@ function DownloadIcon() {
 
 function FileIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 text-[var(--text-tertiary)]">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 text-(--text-tertiary)">
       <path d="M4 2h7l4 4v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z" stroke="currentColor" strokeWidth="1.3"/>
       <path d="M10 2v4h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
     </svg>
@@ -59,32 +60,32 @@ export default async function DownloadsPage() {
     <>
       <section className="bg-white pt-10 pb-0">
         <Container>
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+          <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+            <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[var(--text-secondary)]">Downloads</span>
+            <span className="text-(--text-secondary)">Downloads</span>
           </nav>
           <div className="max-w-xl pb-14">
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-4">Downloads</p>
-            <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl font-bold tracking-[-0.025em] text-[var(--text-primary)] leading-tight mb-5">
+            <Eyebrow className="mb-4">Downloads</Eyebrow>
+            <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl font-bold tracking-[-0.025em] text-(--text-primary) leading-tight mb-5">
               Datenblätter und Unterlagen.
             </SplitText>
-            <p data-reveal className="text-base text-[var(--text-secondary)] leading-relaxed">
+            <p data-reveal className="text-base text-(--text-secondary) leading-relaxed">
               Technische Merkblätter, Zertifikate und Formulare zum Download. Weitere Unterlagen erhalten Sie auf Anfrage.
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="bg-[var(--bg-secondary)] py-14 lg:py-20">
+      <section className="bg-(--bg-secondary) py-14 lg:py-20">
         <Container>
           {kategorien.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">Noch keine Downloads vorhanden.</p>
+            <p className="text-sm text-(--text-tertiary)">Noch keine Downloads vorhanden.</p>
           ) : (
             <div className="space-y-12">
               {kategorien.map(k => (
                 <div key={k}>
-                  <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-tertiary)] mb-4">
+                  <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-(--text-tertiary) mb-4">
                     {kategorienLabels[k]}
                   </p>
                   <div data-reveal-stagger className="space-y-2">
@@ -104,17 +105,17 @@ export default async function DownloadsPage() {
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <FileIcon />
-                            <span className="text-sm font-medium text-[var(--text-primary)] truncate group-hover:text-[#0091d4] transition-colors">
+                            <span className="text-sm font-medium text-(--text-primary) truncate group-hover:text-brand-600 transition-colors">
                               {d.name}
                             </span>
                           </div>
                           <div className="flex items-center gap-4 shrink-0">
-                            <span className="hidden sm:flex items-center gap-2 text-xs text-[var(--text-tertiary)]">
+                            <span className="hidden sm:flex items-center gap-2 text-xs text-(--text-tertiary)">
                               <span className="font-semibold uppercase">{ext}</span>
                               {size ? <><span>·</span><span>{formatBytes(size)}</span></> : null}
                             </span>
                             {url && (
-                              <span className="text-[#0091d4] opacity-0 group-hover:opacity-100 transition-opacity">
+                              <span className="text-brand-600 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <DownloadIcon />
                               </span>
                             )}

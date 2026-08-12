@@ -25,7 +25,7 @@ export default function HomeHero({ data }: Props) {
   const linesRef = useRef<HTMLDivElement>(null)
   const desktopImage = d.heroImageDesktop
     ? urlFor(d.heroImageDesktop).width(2200).quality(85).url()
-    : '/hero/unimec_image_hero_home.jpg.webp'
+    : '/hero/unimec_image_hero_home.avif'
   const mobileImage = d.heroImageMobile
     ? urlFor(d.heroImageMobile).width(1200).quality(85).url()
     : '/hero/unimec_image_hero_home-mobile.jpg.webp'
@@ -39,7 +39,7 @@ export default function HomeHero({ data }: Props) {
   }, [])
 
   return (
-    <section className="h-screen bg-brand-800 px-2 pt-2 pb-4 md:px-4 md:pt-4 md:pb-6 lg:px-5 lg:pt-5 lg:pb-8">
+    <section className="h-screen bg-brand-500 px-2 pt-2 pb-4 md:px-4 md:pt-4 md:pb-6 lg:px-5 lg:pt-5 lg:pb-8">
       <div className="relative h-full overflow-hidden rounded-[26px] shadow-[0_14px_38px_rgba(15,17,23,0.12)]">
         <div className="absolute inset-0">
           <Image

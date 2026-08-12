@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { kategorieTagStyles, defaultKategorieTagStyle } from '@/lib/verfahren-kategorien'
 
 export interface VerfahrenCardData {
   slug: string
@@ -13,13 +14,6 @@ interface VerfahrenCardProps {
   variant?: 'compact' | 'full'
 }
 
-const tagColors: Record<string, string> = {
-  Korrosionsschutz: 'bg-[#e6f7fd] text-[#007ab8]',
-  Optik:            'bg-[var(--bg-tertiary)] text-[var(--text-secondary)]',
-  Verschleiss:      'bg-[#fff8f5] text-[#c0531a]',
-  Werkstoff:        'bg-[#f2f7f2] text-[#4a7a50]',
-}
-
 export default function VerfahrenCard({ verfahren, variant = 'full' }: VerfahrenCardProps) {
   const { slug, name, nutzen, anwendung, filterTag } = verfahren
   const isCompact = variant === 'compact'
@@ -30,7 +24,7 @@ export default function VerfahrenCard({ verfahren, variant = 'full' }: Verfahren
       className={`ui-card ui-card-interactive group flex h-full flex-col ${isCompact ? 'p-5' : 'p-6'}`}
     >
       {filterTag && (
-        <span className={`mb-3 self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${tagColors[filterTag] ?? 'bg-(--bg-secondary) text-(--text-tertiary)'}`}>
+        <span className={`mb-3 self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${kategorieTagStyles[filterTag] ?? defaultKategorieTagStyle}`}>
           {filterTag}
         </span>
       )}
@@ -46,7 +40,7 @@ export default function VerfahrenCard({ verfahren, variant = 'full' }: Verfahren
 
       {!isCompact && (
         <p className="mt-3 flex items-center gap-1.5 text-sm text-(--text-tertiary)">
-          <span className="w-1 h-1 rounded-full bg-[#00a5ec] shrink-0" />
+          <span className="w-1 h-1 rounded-full bg-brand-500 shrink-0" />
           {anwendung}
         </p>
       )}

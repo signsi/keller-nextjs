@@ -9,6 +9,7 @@ import { client } from '@/sanity/lib/client'
 import { allBranchenQuery, brancheBySlugQuery } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityBranche } from '@/sanity/lib/types'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export async function generateStaticParams() {
   const branchen: SanityBranche[] = await client.fetch(allBranchenQuery)
@@ -44,22 +45,22 @@ export default async function BrancheDetailPage(
       {/* Hero */}
       <section className="bg-white pt-10 pb-0">
         <Container>
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mb-8">
-            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
+          <nav className="flex items-center gap-1.5 text-xs text-(--text-tertiary) mb-8">
+            <Link href="/" className="hover:text-(--text-primary) transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/branchen" className="hover:text-[var(--text-primary)] transition-colors">Branchen</Link>
+            <Link href="/branchen" className="hover:text-(--text-primary) transition-colors">Branchen</Link>
             <span>/</span>
-            <span className="text-[var(--text-secondary)]">{b.name}</span>
+            <span className="text-(--text-secondary)">{b.name}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-10 lg:gap-16 pb-14">
             <div className="flex flex-col justify-center">
-              <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-4">Branche</p>
-              <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-[var(--text-primary)] leading-tight mb-5">
+              <Eyebrow className="mb-4">Branche</Eyebrow>
+              <SplitText as="h1" trigger="mount" className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-[-0.025em] text-(--text-primary) leading-tight mb-5">
                 {b.name}
               </SplitText>
               {(b.lead ?? b.beschreibung) && (
-                <p data-reveal className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-xl">
+                <p data-reveal className="text-base sm:text-lg text-(--text-secondary) leading-relaxed max-w-xl">
                   {b.lead ?? b.beschreibung}
                 </p>
               )}
@@ -73,7 +74,7 @@ export default async function BrancheDetailPage(
               </div>
             </div>
 
-            <div data-reveal className="rounded-[16px] overflow-hidden aspect-square relative bg-[var(--bg-secondary)]">
+            <div data-reveal className="rounded-[16px] overflow-hidden aspect-square relative bg-(--bg-secondary)">
               {b.bild ? (
                 <Image
                   src={urlFor(b.bild).width(840).height(840).fit('crop').url()}
@@ -84,7 +85,7 @@ export default async function BrancheDetailPage(
                   priority
                 />
               ) : (
-                <div className="absolute inset-0 bg-[var(--bg-tertiary)]" />
+                <div className="absolute inset-0 bg-(--bg-tertiary)" />
               )}
             </div>
           </div>
@@ -93,10 +94,10 @@ export default async function BrancheDetailPage(
 
       {/* Relevante Verfahren */}
       {b.verfahren && b.verfahren.length > 0 && (
-        <section className="bg-[var(--bg-secondary)] py-14 lg:py-20">
+        <section className="bg-(--bg-secondary) py-14 lg:py-20">
           <Container>
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">Typische Verfahren</p>
-            <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-[var(--text-primary)] mb-8">
+            <Eyebrow className="mb-3">Typische Verfahren</Eyebrow>
+            <SplitText className="text-2xl sm:text-3xl font-bold tracking-[-0.02em] text-(--text-primary) mb-8">
               Empfohlene Beschichtungen.
             </SplitText>
             <div data-reveal-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -106,13 +107,13 @@ export default async function BrancheDetailPage(
                   href={`/verfahren/${v.slug.current}`}
                   className="group bg-white rounded-[14px] p-6 hover:shadow-[0_6px_24px_rgba(15,17,23,0.10)] transition-shadow duration-200"
                 >
-                  <h3 className="text-base font-semibold text-[var(--text-primary)] group-hover:text-[#0091d4] transition-colors mb-2">
+                  <h3 className="text-base font-semibold text-(--text-primary) group-hover:text-brand-600 transition-colors mb-2">
                     {v.name}
                   </h3>
                   {v.beschreibung && (
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-3">{v.beschreibung}</p>
+                    <p className="text-sm text-(--text-secondary) leading-relaxed mb-3">{v.beschreibung}</p>
                   )}
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0091d4] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 opacity-0 group-hover:opacity-100 transition-opacity">
                     Mehr erfahren
                     <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
                       <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -129,11 +130,11 @@ export default async function BrancheDetailPage(
       {otherBranchen.length > 0 && (
         <section className="bg-white py-14 lg:py-20">
           <Container>
-            <p data-reveal className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00a5ec] mb-3">Weitere Branchen</p>
+            <Eyebrow className="mb-3">Weitere Branchen</Eyebrow>
             <div data-reveal-stagger className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 mt-6">
               {otherBranchen.map(br => (
                 <Link key={br._id} href={`/branchen/${br.slug.current}`} className="group block">
-                  <div className="rounded-[10px] overflow-hidden aspect-square relative bg-[var(--bg-secondary)]">
+                  <div className="rounded-[10px] overflow-hidden aspect-square relative bg-(--bg-secondary)">
                     {br.bild ? (
                       <Image
                         src={urlFor(br.bild).width(200).height(200).fit('crop').url()}
@@ -143,10 +144,10 @@ export default async function BrancheDetailPage(
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                       />
                     ) : (
-                      <div className="absolute inset-0 bg-[var(--bg-tertiary)]" />
+                      <div className="absolute inset-0 bg-(--bg-tertiary)" />
                     )}
                   </div>
-                  <p className="mt-1.5 text-xs font-medium text-[var(--text-secondary)] group-hover:text-[#0091d4] transition-colors leading-snug text-center">
+                  <p className="mt-1.5 text-xs font-medium text-(--text-secondary) group-hover:text-brand-600 transition-colors leading-snug text-center">
                     {br.name}
                   </p>
                 </Link>

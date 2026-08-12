@@ -87,13 +87,13 @@ interface Props {
 
 export default function VerfahrenMegaMenu({ onClose }: Props) {
   return (
-    <div className="absolute top-full left-0 right-0 bg-white shadow-[0_16px_48px_rgba(15,17,23,0.12)] z-40">
+    <div className="absolute top-full left-0 right-0 overflow-hidden rounded-b-[22px] bg-white shadow-[0_16px_48px_rgba(15,17,23,0.12)] z-40">
       {/* Process groups */}
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-8 pb-6">
         <div className="flex flex-wrap gap-x-12 gap-y-8">
           {groups.map(group => (
             <div key={group.title} className="min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-(--text-tertiary) mb-4">
                 {group.title}
               </p>
               <div className="flex flex-wrap gap-4">
@@ -106,11 +106,11 @@ export default function VerfahrenMegaMenu({ onClose }: Props) {
                   >
                     {/* Thumbnail */}
                     <div
-                      className="w-full h-[96px] rounded-[8px] mb-2.5 overflow-hidden transition-transform duration-200 group-hover:scale-[1.02]"
+                      className="w-full h-[96px] rounded-md mb-2.5 overflow-hidden transition-transform duration-200 group-hover:scale-[1.02]"
                       style={{ backgroundColor: item.imgBg }}
                     />
                     {/* Label */}
-                    <span className="flex items-center gap-1 text-sm text-[var(--text-secondary)] group-hover:text-[#0091d4] transition-colors leading-snug">
+                    <span className="flex items-center gap-1 text-sm text-(--text-secondary) group-hover:text-brand-600 transition-colors leading-snug">
                       {item.name}
                       <svg width="11" height="11" viewBox="0 0 11 11" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-1 group-hover:translate-x-0 duration-150">
                         <path d="M2 5.5h7M6 3l3 2.5L6 8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -125,7 +125,7 @@ export default function VerfahrenMegaMenu({ onClose }: Props) {
       </div>
 
       {/* Quick links bar */}
-      <div className="bg-[#00a5ec]">
+      <div className="bg-brand-500">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16">
           <div className="flex items-center gap-8 py-3.5 overflow-x-auto">
             {quickLinks.map(({ href, label, icon }) => (

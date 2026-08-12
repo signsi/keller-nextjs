@@ -9,7 +9,10 @@ export default function BrancheTile({ branche }: { branche: SanityBranche }) {
     : `/branchen/${branche.slug.current}.webp`
 
   return (
-    <Link href={`/branchen/${branche.slug.current}`} className="group block h-full">
+    <Link
+      href={`/branchen/${branche.slug.current}`}
+      className="group block h-full rounded-(--card-radius) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-focus)"
+    >
       <article className="ui-card ui-card-interactive ui-card-flush h-full overflow-hidden">
         <div className="relative aspect-video overflow-hidden bg-(--bg-secondary)">
           <Image
