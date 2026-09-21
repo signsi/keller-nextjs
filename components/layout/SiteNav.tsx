@@ -5,13 +5,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from '@/components/brand/Logo'
 import VerfahrenMegaMenu from '@/components/layout/VerfahrenMegaMenu'
+import UeberUnsMegaMenu from '@/components/layout/UeberUnsMegaMenu'
 
 const navLinks = [
-  { href: '/verfahren', label: 'Verfahren', hasMega: true },
+  { href: '/verfahren', label: 'Verfahren', hasMega: true, megaKey: 'verfahren' },
   { href: '/branchen', label: 'Branchen', hasMega: false },
   { href: '/qualitaet', label: 'Qualität', hasMega: false },
   { href: '/downloads', label: 'Downloads', hasMega: false },
-  { href: '/ueber-uns', label: 'Über uns', hasMega: false },
+  { href: '/ueber-uns', label: 'Über uns', hasMega: true, megaKey: 'ueber-uns' },
 ]
 
 export default function SiteNav() {
@@ -20,6 +21,7 @@ export default function SiteNav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
+  const [activeMegaKey, setActiveMegaKey] = useState<'verfahren' | 'ueber-uns' | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   // Geometry (position/padding) must stay stable across mega-menu hover — only
   // background/text color should react to megaOpen, otherwise the header jumps.
@@ -43,13 +45,17 @@ export default function SiteNav() {
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + '/')
 
-  const openMega = () => {
+  const openMega = (key: 'verfahren' | 'ueber-uns') => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
+    setActiveMegaKey(key)
     setMegaOpen(true)
   }
 
   const scheduleMegaClose = () => {
-    closeTimer.current = setTimeout(() => setMegaOpen(false), 120)
+    closeTimer.current = setTimeout(() => {
+      setMegaOpen(false)
+      setActiveMegaKey(null)
+    }, 120)
   }
 
   return (
@@ -70,20 +76,24 @@ export default function SiteNav() {
             />
 
             <nav className="hidden md:flex items-center gap-1" aria-label="Hauptnavigation">
-              {navLinks.map(({ href, label, hasMega }) =>
+              {navLinks.map(({ href, label, hasMega, megaKey }) =>
                 hasMega ? (
                   <div
                     key={href}
                     className="relative"
-                    onMouseEnter={openMega}
+                    onMouseEnter={() => openMega(megaKey as 'verfahren' | 'ueber-uns')}
                     onMouseLeave={scheduleMegaClose}
                   >
                     <Link
                       href={href}
+                      onClick={() => {
+                        setActiveMegaKey(megaKey as 'verfahren' | 'ueber-uns')
+                        setMegaOpen(false)
+                      }}
                       className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-150 rounded-full flex items-center gap-1
                         ${homeOverlayMode
                           ? 'text-white/90 hover:text-white hover:bg-white/10'
-                          : isActive(href) || megaOpen
+                          : isActive(href) || (megaOpen && activeMegaKey === megaKey)
                             ? 'text-(--text-primary)'
                             : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-secondary)'
                         }
@@ -91,13 +101,13 @@ export default function SiteNav() {
                           ? ''
                           : `after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
                             after:bg-brand-500 after:transition-transform after:duration-200 after:origin-left
-                            ${isActive(href) || megaOpen ? 'after:scale-x-100' : 'after:scale-x-0'}`
+                            ${isActive(href) || (megaOpen && activeMegaKey === megaKey) ? 'after:scale-x-100' : 'after:scale-x-0'}`
                         }`}
                     >
                       {label}
                       <svg
                         width="12" height="12" viewBox="0 0 12 12" fill="none"
-                        className={`transition-transform duration-200 ${megaOpen ? 'rotate-180' : ''} ${homeOverlayMode ? 'text-white' : 'text-black'}`}
+                        className={`transition-transform duration-200 ${(megaOpen && activeMegaKey === megaKey) ? 'rotate-180' : ''} ${homeOverlayMode ? 'text-white' : 'text-black'}`}
                       >
                         <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -153,9 +163,21 @@ export default function SiteNav() {
         </div>
 
         {/* Mega menu — rendered inside header to inherit fixed positioning */}
-        {megaOpen && (
-          <div onMouseEnter={openMega} onMouseLeave={scheduleMegaClose}>
-            <VerfahrenMegaMenu onClose={() => setMegaOpen(false)} />
+        {megaOpen && activeMegaKey === 'verfahren' && (
+          <div onMouseEnter={() => openMega('verfahren')} onMouseLeave={scheduleMegaClose}>
+            <VerfahrenMegaMenu onClose={() => {
+              setMegaOpen(false)
+              setActiveMegaKey(null)
+            }} />
+          </div>
+        )}
+
+        {megaOpen && activeMegaKey === 'ueber-uns' && (
+          <div onMouseEnter={() => openMega('ueber-uns')} onMouseLeave={scheduleMegaClose}>
+            <UeberUnsMegaMenu onClose={() => {
+              setMegaOpen(false)
+              setActiveMegaKey(null)
+            }} />
           </div>
         )}
       </header>
